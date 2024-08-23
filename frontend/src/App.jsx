@@ -7,6 +7,7 @@ import Login from './components/Login';
 import About from "./components/About";
 import Rates from './components/Rates';
 import Movies from './components/Movies';
+import Signup from './components/Signup';
 const App = () => {
   return (
     <>
@@ -15,6 +16,7 @@ const App = () => {
         <Routes>
           <Route path='/' element={<LandingPage/>} />
           <Route path='/login' element={<Login/>} />
+          <Route path='/singnup' element={<Signup/>} />
           <Route path='/about' element={<About/>} />
           <Route path='/rates' element={<Rates/>} />
           <Route path='/movies' element={<Movies/>} />
