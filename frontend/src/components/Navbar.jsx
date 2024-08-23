@@ -6,7 +6,7 @@ const Navbar = ()=> {
     return (
         <>
             <div>
-                <nav className='w-screen flex justify-between items-center ml-auto text-white bg-black py-[15px] px-4'>
+                <nav className='w-screen flex justify-between items-center ml-auto text-white bg-black py-[15px] px-4 border-y border-gray-700'>
                     <div className='flex-grow'>
                     <img className='w-[100px] h-[80px] cursor-pointer' src={logo} alt="Logo"/>
                     </div>
@@ -25,14 +25,14 @@ const Navbar = ()=> {
                              Login
                         </li>
                         <li className='inline-block my-[10px] mx-[20px] text-lg cursor-pointer'>
-                             More
+                             About
                         </li>
                     </ul>
-                    <div className='inline-block px-4 border rounded-xl'>
+                    <div className='inline-block px-5 border rounded-xl'>
                         <FontAwesomeIcon className='px-1'
                             icon={faSearch}
                         />
-                        <input className='p-1 border-0 outline-none bg-transparent rounded-sm' type="text" placeholder="Search" />
+                        <input className='p-1 border-0 outline-none bg-transparent rounded-sm px-' type="text" placeholder="Search" />
                     </div>
 
                 </nav>
