@@ -5,7 +5,7 @@ import { NavLink, Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <footer className="w-full flex flex-col justify-between items-center font-poppins text-white bg-black py-[15px] border-y border-gray-700">
+        <footer className="w-full flex flex-col justify-between items-center  text-white bg-black py-[15px] border-y border-gray-700">
             <div className="w-full flex justify-between  pl-4">
                 <div className="inline-block pl-4">
                     <h1 className="text-xl font-bold mb-2">NAVIGATE</h1>
@@ -70,8 +70,8 @@ const Footer = () => {
                 <div className="inline-block">
                     <h1 className="text-xl font-bold mb-2">FOLLOW US ON</h1>
                     <ul>
-                        <li className='my-[5px] pt-3 mx-[10px] text-5xl cursor-pointer hover:'><FontAwesomeIcon icon={faFacebook}/> </li>
-                        <li className='my-[5px] pt-3 mx-[10px] text-5xl cursor-pointer'><FontAwesomeIcon icon={faInstagram}/></li>
+                        <li className='my-[5px] pt-3 mx-[10px] text-5xl cursor-pointer inline-block'><FontAwesomeIcon icon={faFacebook}/> </li>
+                        <li className='my-[5px] pt-3 mx-[10px] text-5xl cursor-pointer inline-block'><FontAwesomeIcon icon={faInstagram}/></li>
                     </ul>
                 </div>
                 <div className="inline-block pr-4">
