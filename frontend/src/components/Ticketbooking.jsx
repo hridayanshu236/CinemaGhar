@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import deadpool from '../assets/deadpool.jpeg';
+import screen from '../assets/screen.svg';
+import seat from '../assets/seat.png';
 
 const Ticketbooking = () => {
     const [selectedDate, setSelectedDate] = useState(null); // Default to null
@@ -29,7 +31,7 @@ const Ticketbooking = () => {
         console.log(`Parsing time: ${timeString} -> hours: ${hours}, minutes: ${minutes}`);
         return dayjs().startOf('day').set('hour', hours).set('minute', minutes);
     };
-    
+
 
     const timeslots = [
         "7:45",
@@ -44,7 +46,7 @@ const Ticketbooking = () => {
     return (
         <div className="flex p-2">
             <div className="flex flex-col w-1/3 min-h-screen">
-                <div className="w-full flex p-2 border shadow-xl rounded-lg">
+                <div className="w-full inline-block p-2 border shadow-xl rounded-lg">
                     <img src={deadpool} alt="Deadpool Poster" />
                 </div>
                 <div className="flex justify-center pt-1 text-xl">
@@ -57,9 +59,9 @@ const Ticketbooking = () => {
 
             <div className="flex flex-col p-2 w-2/3 rounded-lg">
                 <div className="h-1/2 flex flex-col">
-                    <div className="h-1/2">
+                    <div className="h-1/2 inline-block text-center w-full">
                         <h1 className="text-center font-semibold text-lg">Select Date</h1>
-                        <div className="flex justify-center space-x-4 p-4">
+                        <div className="inline-block justify-center space-x-4 p-4 text-center">
                             {dates.map((date) => (
                                 <button
                                     key={date}
@@ -74,13 +76,13 @@ const Ticketbooking = () => {
                             ))}
                         </div>
                     </div>
-                    <div>
+                    <div className='inline-box text-center'>
                         <h1 className="text-center font-semibold text-lg">Select Time</h1>
-                        <div className="flex justify-center space-x-4 p-4">
+                        <div className="inline-block justify-center space-x-4 p-4 text-center">
                             {timeslots.map((time) => {
                                 const timeDayjs = timeStringToDayjs(time);
                                 console.log('Current Time:', now.format('YYYY-MM-DD HH:mm:ss'));
-console.log('Time Slot:', timeDayjs.format('YYYY-MM-DD HH:mm:ss'));
+                                console.log('Time Slot:', timeDayjs.format('YYYY-MM-DD HH:mm:ss'));
 
 
                                 // For today's date, only show times that are in the future
@@ -120,12 +122,135 @@ console.log('Time Slot:', timeDayjs.format('YYYY-MM-DD HH:mm:ss'));
                         </div>
                     </div>
                 </div>
-                <div>
-                    <h1 className="text-center font-semibold text-lg">Pick Seats</h1>
+                <div className='inline-block'>
+                    <div className='flex flex-col pb-5 '>
+                        <div className='flex flex-col items-center'>
+                            <h1 className="text-center font-semibold text-lg">Pick Seats</h1>
+
+                        </div>
+                        <div className='inline-block text-center w-1/3 m-auto'>
+                            <img src={screen} className=' pt-3 ' />
+                        </div>
+                        <div className='flex w-full pt-4 justify-center'>
+
+                            <span className='pr-1'>A</span>
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                        </div>
+                        <div className='flex w-full pt-4 justify-center'>
+                            <span className='pr-1'>B</span>
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                        </div>
+                        <div className='flex w-full pt-4 justify-center'>
+                            <span className='pr-1'>C</span>
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                        </div>
+                        <div className='flex w-full pt-4 justify-center'>
+                            <span className='pr-1'>D</span>
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                        </div>
+                        <div className='flex w-full pt-4 justify-center'>
+                            <span className='pr-1'>E</span>
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                        </div>
+                        <div className='flex w-full pt-4 justify-center'>
+                            <span className='pr-1'>F</span>
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                        </div>
+                        <div className='flex w-full pt-4 justify-center'>
+                            <span className='pr-1'>G</span>
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                            <img src={seat} className='w-6 h-6' />
+                        </div>
+
+                    </div>
                 </div>
+
             </div>
         </div>
-        
+
     );
 }
 
