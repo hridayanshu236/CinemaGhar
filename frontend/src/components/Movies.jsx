@@ -69,7 +69,7 @@ const Movies = () => {
             {data.map((d, index) => (
               <div key={index} className=' h-[450px] text-black rounded-xl'>
                 <div className='rounded-t-xl flex justify-center items-center'>
-                  <img src={d.img} alt='' className='h-45 w-40 rounded-lg object-cover rounded-1xl mix-blend-overlay cursor-pointer transition-opacity duration-300 hover:opacity-40 ' />
+                  <img src={d.img} alt='' className='h-45 w-40 shadow-xl rounded-lg object-cover rounded-1xl mix-blend-overlay cursor-pointer transition-opacity duration-300 hover:opacity-40 ' />
                 </div>
                 <div className='flex flex-col justify-center items-center p-4'>
                   <p className='text-xl font-semibold'>{d.name}</p>

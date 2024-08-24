@@ -1,6 +1,6 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import logo from '../assets/logo3.svg';
+import logo from '../assets/logo4.png';
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 
@@ -29,8 +29,13 @@ const Navbar = () => {
     }, [scrollY]);
     return (
         <nav className={`w-full flex justify-between items-center text-white bg-black py-[15px] px-4 border-y border-gray-700 transition-transform duration-500${showNavbar ? 'translate-y-0' : '-translate-y-full'}`}>
-            <div className='flex-grow'>
-                <img className='w-[100px] h-[80px] cursor-pointer' src={logo} alt="Logo" />
+            <div className='inline flex-grow'>
+                <img className='w-[px] h-[60px] cursor-pointer' src={logo} alt="Logo" />
+                <div className='flex'>
+                <p className='font-semibold text-lg'> <span className='text-purple-500'>Cinema</span></p>
+                <p className='pt-0.5 pl-1'>Ghar</p>
+                </div>
+               
                 
             </div>
             <ul className=''>

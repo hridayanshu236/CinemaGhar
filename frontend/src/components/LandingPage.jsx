@@ -1,12 +1,39 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import hero from '../assets/hero.jpg';
 import Movies from './Movies'; // Import the Movies component
 
 const LandingPage = () => {
+    const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+        }
+      },
+      { threshold: 0.1 } // Adjust this value based on when you want the effect to trigger
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, []);
 
     return (
         <div className='max-w-full mx-auto'>
-            <section className='flex flex-col items-center mt-20'>
+            <section 
+            ref={ref}
+            className={` flex flex-col items-center mt-20 relative transition-opacity duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                 <h1 className='text-6xl lg:text-[4rem] uppercase font-bold'>
                     <span className='text-purple-500'> Cinema</span>Ghar
                 </h1>

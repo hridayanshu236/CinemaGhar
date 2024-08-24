@@ -8,6 +8,7 @@ import About from "./components/About";
 import Rates from './components/Rates';
 import Movies from './components/Movies';
 import Signup from './components/Signup';
+import Ticketbooking from './components/Ticketbooking';
 const App = () => {
   return (
     <>
@@ -20,6 +21,7 @@ const App = () => {
           <Route path='/about' element={<About/>} />
           <Route path='/rates' element={<Rates/>} />
           <Route path='/movies' element={<Movies/>} />
+          <Route path='/ticketbooking' element={<Ticketbooking/>} />
         </Routes>
       </div>
     
