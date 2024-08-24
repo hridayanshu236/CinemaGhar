@@ -1,12 +1,34 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import logo from '../assets/logo3.svg';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 
 const Navbar = () => {
+    const [scrollY, setScrollY] = useState(0);
+    const [showNavbar, setShowNavbar] = useState(true);
+
+    const handleScroll = () => {
+        setScrollY(window.scrollY);
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (scrollY > 150) {
+            setShowNavbar(false);
+        } else {
+            setShowNavbar(true);
+        }
+    }, [scrollY]);
     return (
-        <nav className='w-full flex justify-between items-center  text-white bg-black py-[15px] px-4 border-y border-gray-700'>
+        <nav className={`w-full flex justify-between items-center text-white bg-black py-[15px] px-4 border-y border-gray-700 transition-transform duration-500${showNavbar ? 'translate-y-0' : '-translate-y-full'}`}>
             <div className='flex-grow'>
                 <img className='w-[100px] h-[80px] cursor-pointer' src={logo} alt="Logo" />
                 
