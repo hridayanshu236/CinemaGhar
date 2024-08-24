@@ -70,15 +70,15 @@ const Footer = () => {
                 <div className="inline-block">
                     <h1 className="text-xl font-bold mb-2">FOLLOW US ON</h1>
                     <ul>
-                        <li className='my-[5px] pt-3 mx-[10px] text-5xl cursor-pointer inline-block'><FontAwesomeIcon icon={faFacebook}/> </li>
-                        <li className='my-[5px] pt-3 mx-[10px] text-5xl cursor-pointer inline-block'><FontAwesomeIcon icon={faInstagram}/></li>
+                        <li className='my-[5px] pt-3 mx-[10px] text-5xl cursor-pointer inline-block transform transition-transform duration-300 hover:scale-125 hover:text-blue-500'><FontAwesomeIcon icon={faFacebook}/> </li>
+                        <li className='my-[5px] pt-3 mx-[10px] text-5xl cursor-pointer inline-block transform transition-transform duration-300 hover:scale-125 hover:text-[#34A853]'><FontAwesomeIcon icon={faInstagram}/></li>
                     </ul>
                 </div>
                 <div className="inline-block pr-4">
                     <h1 className="text-xl font-bold mb-2">Download our App</h1>
                     <ul>
-                    <li className='my-[5px] pt-3 mx-[10px] text-5xl cursor-pointer inline-block '><FontAwesomeIcon icon={faAppStore}/> </li>
-                    <li className='my-[5px] pt-3 mx-[10px] pl-3 text-5xl cursor-pointer inline-block'><FontAwesomeIcon icon={faGooglePlay}/> </li>
+                    <li className='my-[5px] pt-3 mx-[10px] text-5xl cursor-pointer inline-block transform transition-transform duration-300 hover:scale-125 hover:text-blue-500'><FontAwesomeIcon icon={faAppStore}/> </li>
+                    <li className='my-[5px] pt-3 mx-[10px] pl-3 text-5xl cursor-pointer inline-block transform transition-transform duration-300 hover:scale-125 hover:text-white'><FontAwesomeIcon icon={faGooglePlay}/> </li>
                         
                     </ul>
                 </div>
