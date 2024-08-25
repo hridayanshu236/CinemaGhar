@@ -7,6 +7,7 @@ import rocky from '../assets/rocky.jpg';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { NavLink } from 'react-router-dom';
 
 const Movies = () => {
   const settings = {
@@ -74,9 +75,11 @@ const Movies = () => {
                 <div className='flex flex-col justify-center items-center p-4'>
                   <p className='text-xl font-semibold'>{d.name}</p>
                   <p>{d.plot}</p>
+                  <NavLink to='/ticketbooking'>
                   <button className='bg-purple-500 text-white text-lg px-6 py-1 rounded-xl mt-2  hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500'>
                     Buy Tickets
                   </button>
+                  </NavLink>
                 </div>
               </div>
             ))}
