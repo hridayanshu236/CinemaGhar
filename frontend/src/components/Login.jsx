@@ -40,6 +40,7 @@ const Login = () => {
 
 
     const handleSubmit = (e) => {
+        e.preventDefault(); // Prevent the default form submission behavior
         let inputError = {
             email: "",
             password: "",
@@ -83,22 +84,33 @@ const Login = () => {
         }
 
         // Clear any previous errors and show success
-        setFormError(inputError);
+        // setFormError(inputError);
         // setFormInput((prevState) => ({
         //   ...prevState,
-        //   // successMsg: "Validation Success",
+        //   successMsg: "Incorrect Password",
         // }));
-        e.preventDefault()
+        
         axios.post('http://localhost:3001/login', { email: formInput.email, password: formInput.password })
             .then(result => {
                 console.log(result)
                 if (result.data === "Success") {
                     navigate('/')
                 }
-
+                else if (result.data === "Password is incorrect") {
+                    setFormError({
+                        ...inputError,
+                        successMsg: "Incorrect Password", // Set error message from server response
+                    });
+                }
             })
 
-            .catch(err => console.error('Error during login:', err));
+            .catch(err => {
+                console.error('Error during login:', err);
+                setFormError({
+                    ...inputError,
+                    successMsg: "An error occurred. Please try again.",
+                });
+            });
     }
 
     return (
@@ -137,6 +149,10 @@ const Login = () => {
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
                                 placeholder="Enter your password"
                             />
+                            <p className='text-red-700'>{formError.password}</p>
+                            <p className='text-red-700'>{formError.successMsg}</p>
+
+
                             <button
                                 type="button"
                                 className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500"
