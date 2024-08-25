@@ -147,6 +147,9 @@ const Ticketbooking = () => {
                         <div className='inline-block text-center w-1/3 m-auto'>
                             <img src={screen} className=' pt-3 ' />
                         </div>
+                        <div className='inline-block text-center'>
+                        <h1 className="text-center font-semibold text-lg"><span className='text-purple-500'>Scr</span>een</h1>
+                        </div>
                         {['A', 'B', 'C', 'D', 'E', 'F', 'G'].map(row => (
                             <div className='flex w-full pt-4 justify-center' key={row}>
                                 <span className='pr-1'>{row}</span>
