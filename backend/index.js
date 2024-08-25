@@ -6,8 +6,17 @@ const app = express();
 const bcrypt = require('bcrypt');
 app.use(express.json());
 app.use(cors());
+require('dotenv').config();
 
-mongoose.connect("mongodb://localhost:27017/CinemaGhar");
+
+mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,})
+    .then(() => {
+    console.log('Connection successfull');
+}).catch((err) =>{
+    console.log('No connection');
+})
 
 app.post("/login", (req, res) =>{
     const { email, password } = req.body;
