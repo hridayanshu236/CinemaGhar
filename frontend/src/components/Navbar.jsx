@@ -1,8 +1,10 @@
-import { faBars, faHamburger, faSearch, faX } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faHamburger, faSearch, faUser, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import logo from '../assets/logo4.png';
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 const Navbar = () => {
     const [scrollY, setScrollY] = useState(0);
@@ -83,18 +85,7 @@ const Navbar = () => {
                     >
                         Rates
                     </NavLink></li>
-                <li className='inline-block my-[10px] mx-[20px] text-lg cursor-pointer'>
-                    <NavLink
-                        to="/login"
-                        className={({ isActive }) =>
-                            `w-full h-full py-[10px] px-[30px] m-0 text-xl block font-medium hover:bg-white hover:text-purple-500 sm:text-lg sm:hover:bg-transparent sm:p-0 transition-all ease-in duration-300 ${isActive
-                                ? "text-purple-500 bg-white sm:bg-transparent"
-                                : "text-white"
-                            }`
-                        }
-                    >
-                        Login
-                    </NavLink></li>
+               
                 <li className='inline-block my-[10px] mx-[20px] text-lg cursor-pointer'>
                     <NavLink
                         to="/about"
@@ -109,6 +100,20 @@ const Navbar = () => {
                     </NavLink></li>
                     <li className='inline-block my-[10px] mx-[20px] text-lg cursor-pointer'>
                     <NavLink
+                        to="/login"
+                        className={({ isActive }) =>
+                            `w-full h-full py-[10px] px-[30px] m-0 text-xl block font-medium hover:bg-white hover:text-purple-500 sm:text-lg sm:hover:bg-transparent sm:p-0 transition-all ease-in duration-300 ${isActive
+                                ? "text-purple-500 bg-white sm:bg-transparent"
+                                : "text-white"
+                            }`
+                        }
+                    >
+                        Login
+                    </NavLink></li>
+                    
+                    {/* <li className='inline-block my-[10px] mx-[20px] cursor-pointer'>
+                    
+                    <NavLink
                         to="/profile"
                         className={({ isActive }) =>
                             `w-full h-full py-[10px] px-[30px] m-0 text-xl block font-medium hover:bg-white hover:text-purple-500 sm:text-lg sm:hover:bg-transparent sm:p-0 transition-all ease-in duration-300 ${isActive
@@ -117,8 +122,9 @@ const Navbar = () => {
                             }`
                         }
                     >
-                        Profile
-                    </NavLink></li>
+                        
+                        <FontAwesomeIcon icon={faUser}/>
+                    </NavLink></li> */}
             </ul>
             {/* <div className='inline-block px-3 '>
                 <FontAwesomeIcon className='px-1' icon={faSearch} />
@@ -204,7 +210,7 @@ const Navbar = () => {
                             }`
                         }
                     >
-                        Profile
+                        <FontAwesomeIcon icon={faUser}/>
                     </NavLink></li>
                 </ul>
         </div>
