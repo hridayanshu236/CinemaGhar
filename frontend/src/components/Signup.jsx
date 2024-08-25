@@ -125,7 +125,7 @@ const Signup = () => {
 
     setFormError({
       ...inputError,
-      successMsg: errorMsg, // Set a more generic error message
+      successMsg: errorMsg, 
     });
   });
   }
