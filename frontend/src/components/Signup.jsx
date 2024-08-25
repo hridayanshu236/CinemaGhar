@@ -20,7 +20,7 @@ const Signup = () => {
     successMsg: "",
   });
   const navigate = useNavigate(); // Initialize navigate
-  
+
   const [formError, setFormError] = useState({
     email: "",
     password: "",
@@ -89,7 +89,7 @@ const Signup = () => {
     // Clear any previous errors and show success
     setFormError(inputError); // Clear previous errors
 
-  axios.post('http://localhost:3001/signup', {
+  axios.post('http://localhost:3001/api/signup', {
     email: formInput.email,
     password: formInput.password
   })

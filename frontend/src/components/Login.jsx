@@ -90,7 +90,7 @@ const Login = () => {
         //   successMsg: "Incorrect Password",
         // }));
         
-        axios.post('http://localhost:3001/login', { email: formInput.email, password: formInput.password })
+        axios.post('http://localhost:3001/api/login', { email: formInput.email, password: formInput.password })
             .then(result => {
                 console.log(result)
                 if (result.data === "Success") {
