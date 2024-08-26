@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./router/auth'); // Adjust path as needed
+const movieRoutes = require('./router/movie'); // Ensure this path is correct
+
 require('dotenv').config();
 
 const app = express();
@@ -19,6 +21,10 @@ app.use(cors(corsOptions));
 app.use(cookieParser()); // Add cookie parser middleware
 app.use(express.json()); // For parsing application/json
 
+// Use routes from auth.js and movie.js
+app.use('/api/auth', authRoutes);
+app.use('/api/movies', movieRoutes); 
+
 // Connect to MongoDB
 const DB = process.env.MONGODB_URI;
 mongoose.connect(DB, {
@@ -31,9 +37,6 @@ mongoose.connect(DB, {
     .catch((err) => {
         console.error('No connection:', err);
     });
-
-// Use routes from auth.js
-app.use('/api', authRoutes);
 
 // Global error handlers
 process.on('uncaughtException', (err) => {

@@ -1,4 +1,5 @@
 const UserModel = require('../models/User');
+// const BookingModel = require('../models/Booking');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config({ path: './.env' });
@@ -51,6 +52,21 @@ exports.logout = (req, res) => {
 
   res.json({ message: 'Logged out successfully' });
 };
+
+//Function to handle booking
+// exports.signup = async(req,res) =>{
+//   const {userId, movieTitle, date, time, seats} = req.body;
+//   // Create a new booking
+//   const newBooking = new BookingModel({
+//     user: userId,
+//     movieTitle,
+//     date,
+//     time,
+//     seats
+// });
+// await newBooking.save();
+// }
+
 
 // Function to handle user signup
 exports.signup = async (req, res) => {

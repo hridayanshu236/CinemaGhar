@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }) => {
 
     const checkLoginStatus = async () => {
         try {
-            const response = await fetch('http://localhost:3001/api/check-status', {
+            const response = await fetch('http://localhost:3001/api/auth/check-status', {
                 method: 'GET',
                 credentials: 'include'
             });

@@ -1,22 +1,7 @@
-
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
-const { login, logout } = require('../controllers/userController');
 const jwt = require('jsonwebtoken');
-
-// Public routes
-router.get('/', (req, res) => {
-    res.send('Welcome to the API');
-});
-
-router.get('/about', (req, res) => {
-    res.send('About page');
-});
-
-router.get('/movies', (req, res) => {
-    res.send('Movies page');
-});
 
 // Middleware to check if the user is logged in
 const checkAuth = (req, res, next) => {
@@ -39,24 +24,12 @@ const checkAuth = (req, res, next) => {
     });
 };
 
-router.get('/check-status', checkAuth, (req, res) => {
-    res.json({ isLoggedIn: true, user: req.user });
-});
-
-router.get('/rates', (req, res) => {
-    res.send('Rates page');
-});
-
-router.get('/signup', (req, res) => {
-    res.send('Signup page');
-});
-
 // Authentication routes
 router.post('/login', userController.login);
 router.post('/signup', userController.signup);
-
-
-// Route for user logout
-router.post('/logout', logout);
+router.post('/logout', userController.logout);
+router.get('/check-status', checkAuth, (req, res) => {
+    res.json({ isLoggedIn: true, user: req.user });
+});
 
 module.exports = router;

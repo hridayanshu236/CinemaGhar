@@ -57,7 +57,7 @@ const Navbar = () => {
     // }, []);
     const handleLogout = async () => {
         try {
-            const response = await fetch('http://localhost:3001/api/logout', {
+            const response = await fetch('http://localhost:3001/api/auth/logout', {
                 method: 'POST',
                 credentials: 'include' // Ensure cookies are sent
             });
@@ -170,7 +170,7 @@ const Navbar = () => {
                 {isLoggedIn && (
                     <li className='inline-block my-[10px] mx-[20px] text-lg cursor-pointer'>
                         <NavLink
-                            to="/profile"
+                            to="/signout"
                             className={({ isActive }) =>
                                 `w-full h-full py-[10px] px-[30px] m-0 text-xl block font-medium hover:bg-white hover:text-purple-500 sm:text-lg sm:hover:bg-transparent sm:p-0 transition-all ease-in duration-300 ${isActive
                                     ? "text-purple-500 bg-white sm:bg-transparent"
@@ -277,7 +277,7 @@ const Navbar = () => {
                     {isLoggedIn && (
                         <li className='inline-block my-[10px] mx-[20px] text-lg cursor-pointer'>
                             <NavLink
-                                to="/profile"
+                                to="/signout"
                                 className={({ isActive }) =>
                                     `w-full h-full py-[10px] px-[30px] m-0 text-xl block font-medium hover:text-purple-500 sm:text-lg sm:hover:bg-transparent sm:p-0 transition-all ease-in duration-300 ${isActive
                                         ? "text-purple-500 sm:bg-transparent"
@@ -285,7 +285,7 @@ const Navbar = () => {
                                     }`
                                 }
                             >
-                                <FontAwesomeIcon icon={faUser}/>
+                               <FontAwesomeIcon icon={faSignOut} onClick={handleLogout}/>
                             </NavLink></li>
                     )}
                 </ul>

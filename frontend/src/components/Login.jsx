@@ -92,7 +92,7 @@ const Login = () => {
         //   successMsg: "Incorrect Password",
         // }));
         try {
-            const response = await axios.post('http://localhost:3001/api/login', {
+            const response = await axios.post('http://localhost:3001/api/auth/login', {
                 email: formInput.email,
                 password: formInput.password
             },{

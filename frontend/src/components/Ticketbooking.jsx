@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import deadpool from '../assets/deadpool.jpeg';
 import screen from '../assets/screen.svg';
@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChair } from '@fortawesome/free-solid-svg-icons';
 
 const Ticketbooking = () => {
+    // const [movies, setMovies] = useState([]);
     const [selectedDate, setSelectedDate] = useState(null); // Default to null
     const [selectedTime, setSelectedTime] = useState(null);// initialized in an empty array
     const [selectedSeats, setSelectedSeats] = useState([]); // Default to null
@@ -60,7 +61,7 @@ const Ticketbooking = () => {
 
     return (
         <div className="flex flex-wrap p-2">
-            <div className="flex flex-col basis-full sm:basis-1/3 min-w-[200px]">
+            <div className="flex flex-col basis-full sm:basis-1/3 min-w-[200px] p-6">
                 <div className="w-full inline-block p-2 border shadow-xl rounded-lg">
                     <img src={deadpool} alt="Deadpool Poster" />
                 </div>
