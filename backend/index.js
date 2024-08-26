@@ -1,14 +1,26 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const authRoutes = require('./router/auth'); // Adjust path as needed
 require('dotenv').config();
 
 const app = express();
-app.use(express.json());
-app.use(cors());
-const DB = process.env.MONGODB_URI;
+
+// CORS configuration
+const corsOptions = {
+    origin: "http://localhost:3000",
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true // Allow cookies and credentials
+};
+
+// Apply middleware
+app.use(cors(corsOptions));
+app.use(cookieParser()); // Add cookie parser middleware
+app.use(express.json()); // For parsing application/json
+
 // Connect to MongoDB
+const DB = process.env.MONGODB_URI;
 mongoose.connect(DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -34,6 +46,7 @@ process.on('unhandledRejection', (err) => {
     process.exit(1); // Exit the process with an error code
 });
 
+// Start server
 app.listen(3001, () => {
     console.log("Server is running on port 3001");
 });

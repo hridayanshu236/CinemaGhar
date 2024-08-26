@@ -131,11 +131,11 @@ const Signup = () => {
   }
 
   return (
-    <div className="flex flex-row">
-      <div className='w-1/2'>
+    <div className="flex flex-col md:flex-row flex-wrap">
+      <div className='w-full md:w-1/2'>
         <img className="w-full min-h-screen" src={Loginsnap} alt="Book Tickets" />
       </div>
-      <div className='w-1/2 flex flex-col justify-evenly items-center'>
+      <div className='w-full md:w-1/2 flex flex-col justify-evenly items-center pt-5'>
         <div className="font-poppins font-bold text-4xl">
           <h1><span className='text-purple-500'>Re</span>gister</h1>
         </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useContext, useState } from 'react';
 
 import Loginsnap from "../assets/Login.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,9 +6,11 @@ import { faEye, faEyeSlash, } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import AuthContext from '../context/AuthContext';
 
 
 const Login = () => {
+    const { checkLoginStatus } = useContext(AuthContext);
     const [showPassword, setShowPassword] = useState(false);
 
     const handleTogglePassword = () => {
@@ -39,7 +41,7 @@ const Login = () => {
     // Initialize an object to track input errors
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault(); // Prevent the default form submission behavior
         let inputError = {
             email: "",
@@ -89,36 +91,41 @@ const Login = () => {
         //   ...prevState,
         //   successMsg: "Incorrect Password",
         // }));
-        
-        axios.post('http://localhost:3001/api/login', { email: formInput.email, password: formInput.password })
-            .then(result => {
-                console.log(result)
-                if (result.data === "Success") {
-                    navigate('/')
-                }
-                else if (result.data === "Password is incorrect") {
-                    setFormError({
-                        ...inputError,
-                        successMsg: "Incorrect Password", // Set error message from server response
-                    });
-                }
-            })
+        try {
+            const response = await axios.post('http://localhost:3001/api/login', {
+                email: formInput.email,
+                password: formInput.password
+            },{
+                withCredentials: true
+            });
 
-            .catch(err => {
-                console.error('Error during login:', err);
+            if (response.data.message === "Success") {
+                await checkLoginStatus();
+                // Navigate to home page
+                navigate('/');
+            } else if (response.data.error) {
+                // Set error message from server response
                 setFormError({
                     ...inputError,
-                    successMsg: "An error occurred. Please try again.",
+                    successMsg: response.data.error,
                 });
+            }
+        } catch (err) {
+            console.error('Error during login:', err);
+            setFormError({
+                ...inputError,
+                successMsg: "An error occurred. Please try again.",
             });
+        }
+           
     }
 
     return (
-        <div className="flex flex-row">
-            <div className='w-1/2'>
+        <div className="flex flex-col md:flex-row flex-wrap">
+            <div className='w-full md:w-1/2'>
                 <img className="w-full min-h-screen" src={Loginsnap} alt="Book Tickets" />
             </div>
-            <div className='w-1/2 flex flex-col justify-evenly items-center'>
+            <div className='w-full md:w-1/2 flex flex-col justify-evenly items-center pt-5'>
                 <div className="font-poppins font-bold text-4xl">
                     <h1><span className='text-purple-500'>Lo</span>gin</h1>
                 </div>

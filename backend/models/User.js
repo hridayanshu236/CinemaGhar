@@ -10,10 +10,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    refreshToken: {
-        type: String, // Store the refresh token here
-        default: null
-    }
+    // refreshToken: {
+    //     type: String, // Store the refresh token here
+    //     default: null
+    // }
 });
 
 const UserModel = mongoose.model("Users", UserSchema)

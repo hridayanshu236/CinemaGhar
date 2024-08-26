@@ -1,6 +1,7 @@
 const UserModel = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+require('dotenv').config({ path: './.env' });
 
 const createToken = (_id) =>{
     return jwt.sign({_id}, process.env.SECRET,{expiresIn: '3d'});
@@ -10,31 +11,45 @@ const createToken = (_id) =>{
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await UserModel.findOne({ email });
+    console.log('Login request received:', email);
 
+    const user = await UserModel.findOne({ email });
     if (!user) {
+      console.log('No user found with this email:', email);
       return res.status(404).json({ error: 'No user found with this email' });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
-
     if (!isMatch) {
+      console.log('Invalid credentials for user:', email);
       return res.status(400).json({ error: 'Invalid credentials' });
     }
-    //Generating a token for each login
-    const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '1h' });
-      // Set the token in a cookie
-      res.cookie('authToken', token, {
-        httpOnly: true, // Helps prevent XSS attacks
-        secure: process.env.NODE_ENV === 'production', // Use HTTPS in production
-        maxAge: 3600000 // 1 hour in milliseconds
-      });
 
-    res.json({ message: 'Login successful', token });
+    // Generate a token for the user
+    const token = createToken(user._id);
+
+    // Set the token in a cookie
+    res.cookie('authToken', token, {
+      httpOnly: true,
+      secure: false,
+      maxAge: 3600000 // 1 hour
+    });
+
+    console.log('Login successful for user:', email);
+    res.json({ message: 'Success', token });
   } catch (error) {
     console.error('Error during login:', error);
     res.status(500).json({ error: 'Server error' });
   }
+};
+exports.logout = (req, res) => {
+  res.cookie('authToken', '', {
+    httpOnly: true,
+    secure: false,
+    expires: new Date(0) // Set expiry date to past
+  });
+
+  res.json({ message: 'Logged out successfully' });
 };
 
 // Function to handle user signup
@@ -50,7 +65,8 @@ exports.signup = async (req, res) => {
       return res.status(400).json({ error: 'Email already in use' });
     }
     //Generate a token
-    const token = createToken(user._id)
+
+    // const token = createToken(user._id)
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await UserModel.create({ email, password: hashedPassword });
