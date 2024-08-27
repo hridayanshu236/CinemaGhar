@@ -5,12 +5,7 @@ const BookingSchema = new mongoose.Schema({
         type: String, 
         required: true 
     },
-    description: { 
-        type: String 
-    },
-    posterUrl: { 
-        type: String 
-    }, // URL to the movie's poster image
+   
     screenings: [{ 
         date: { type: String, required: true },
         times: [{ type: String, required: true }],
@@ -21,7 +16,7 @@ const BookingSchema = new mongoose.Schema({
     }],
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Users',
+        ref: 'User',
         required: true,
     },
     createdAt: {

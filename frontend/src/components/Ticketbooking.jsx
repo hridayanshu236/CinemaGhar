@@ -5,22 +5,54 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChair } from '@fortawesome/free-solid-svg-icons';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ConfirmationModal from './ConfirmationModal'; // Import the modal component
+import BookingSuccessfulModal from './BookingSuccessfulModal';
+import axios from 'axios';
 
 const Ticketbooking = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { selectedMovie } = location.state || {};
+    const [bookingSuccessful, setBookingSuccessful] = useState(false);
 
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedTime, setSelectedTime] = useState(null);
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const handleConfirm = () => {
-        setIsModalOpen(false);
-        // Handle the booking confirmation here (e.g., send data to the server)
+    const handleBooking = () => {
+        if (validateSelection()) {
+            setIsModalOpen(true);
+        } else {
+            alert('Please select a date, time, and at least one seat before booking.');
+        }
     };
+    const handleConfirm = async () => {
+        try {
+            const response = await axios.post('http://localhost:3001/api/booking/create', {
 
+                title: selectedMovie.title,
+                date: selectedDate,
+                time: selectedTime,
+                seats: selectedSeats
+            }, {
+                withCredentials: true
+            })
+            console.log('Booking successful:', response.data);
+            console.log('BookingSuccessfulModal isOpen:', bookingSuccessful);
+            setBookingSuccessful(true); // Set bookingSuccessful to true
+            console.log('BookingSuccessfulModal isOpen:', bookingSuccessful);
+            setIsModalOpen(false); // Close the modal
+            // Handle success (e.g., show a confirmation message, navigate to a different page, etc.)
+        } catch (err) {
+            console.error('Error during booking:', err.response?.data || err.message);
+            // Handle error (e.g., show an error message to the user)
+        }
+    };
+    const handleClose = ()=>{
+        setBookingSuccessful(false);
+        navigate('/');
+     }
+ 
     const handleDateSelect = (date) => {
         setSelectedDate(date);
         setSelectedTime(null); // Reset the selected time when a new date is selected
@@ -57,7 +89,9 @@ const Ticketbooking = () => {
         const [hours, minutes] = timeString.split(':').map(Number);
         return dayjs().startOf('day').set('hour', hours).set('minute', minutes);
     };
-
+    const validateSelection = () => {
+        return selectedDate && selectedTime && selectedSeats.length > 0;
+    };
     const timeslots = [
         "7:45",
         "11:45",
@@ -98,11 +132,10 @@ const Ticketbooking = () => {
                                     <button
                                         key={date}
                                         onClick={() => handleDateSelect(date)}
-                                        className={`px-4 py-2 rounded-lg text-white ${
-                                            selectedDate === date
-                                                ? 'bg-purple-500'
-                                                : 'bg-gray-500 hover:bg-gray-700'
-                                        }`}
+                                        className={`px-4 py-2 rounded-lg text-white ${selectedDate === date
+                                            ? 'bg-purple-500'
+                                            : 'bg-gray-500 hover:bg-gray-700'
+                                            }`}
                                     >
                                         {dayjs(date).format('MMMM D')}
                                     </button>
@@ -123,11 +156,10 @@ const Ticketbooking = () => {
                                             <button
                                                 key={time}
                                                 onClick={() => handleTimeSelect(time)}
-                                                className={`px-4 py-2 rounded-lg text-white ${
-                                                    selectedTime === time
-                                                        ? 'bg-purple-500'
-                                                        : 'bg-gray-500 hover:bg-gray-700'
-                                                }`}
+                                                className={`px-4 py-2 rounded-lg text-white ${selectedTime === time
+                                                    ? 'bg-purple-500'
+                                                    : 'bg-gray-500 hover:bg-gray-700'
+                                                    }`}
                                             >
                                                 {time}
                                             </button>
@@ -140,11 +172,10 @@ const Ticketbooking = () => {
                                             <button
                                                 key={time}
                                                 onClick={() => handleTimeSelect(time)}
-                                                className={`px-4 py-2 rounded-lg text-white ${
-                                                    selectedTime === time
-                                                        ? 'bg-purple-500'
-                                                        : 'bg-gray-500 hover:bg-gray-700'
-                                                }`}
+                                                className={`px-4 py-2 rounded-lg text-white ${selectedTime === time
+                                                    ? 'bg-purple-500'
+                                                    : 'bg-gray-500 hover:bg-gray-700'
+                                                    }`}
                                             >
                                                 {time}
                                             </button>
@@ -182,11 +213,10 @@ const Ticketbooking = () => {
                                         >
                                             <FontAwesomeIcon
                                                 icon={faChair}
-                                                className={`transform transition-transform duration-300 hover:scale-125 w-6 h-6 ${
-                                                    selectedSeats.includes(`${row}${seatNumber}`)
-                                                        ? 'text-purple-500 opacity-50'
-                                                        : 'text-gray-500'
-                                                }`}
+                                                className={`transform transition-transform duration-300 hover:scale-125 w-6 h-6 ${selectedSeats.includes(`${row}${seatNumber}`)
+                                                    ? 'text-purple-500 opacity-50'
+                                                    : 'text-gray-500'
+                                                    }`}
                                             />
                                         </button>
                                     ))}
@@ -202,8 +232,8 @@ const Ticketbooking = () => {
                                     </p>
                                 </div>
                                 <div className='inline-block'>
-                                    <button 
-                                    onClick={() => setIsModalOpen(true)} className='bg-purple-500 text-white text-lg px-4 py-1 rounded-lg mt-2 hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500'>
+                                    <button
+                                        onClick={handleBooking} className='bg-purple-500 text-white text-lg px-4 py-1 rounded-lg mt-2 hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500'>
                                         Book
                                     </button>
                                 </div>
@@ -212,16 +242,22 @@ const Ticketbooking = () => {
                     </div>
                 </div>
                 <ConfirmationModal
-                isOpen = {isModalOpen}
-                onClose= {() => setIsModalOpen(false)}
-                selectedDate = {selectedDate}
-                selectedMovie = {selectedMovie}
-                selectedTime = {selectedTime}
-                selectedSeats = {selectedSeats}
-                onConfirm = {handleConfirm} />
+                    isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                    selectedDate={selectedDate}
+                    selectedMovie={selectedMovie}
+                    selectedTime={selectedTime}
+                    selectedSeats={selectedSeats}
+                    onConfirm={handleConfirm}
+                />
+
+                <BookingSuccessfulModal
+                    isOpen={bookingSuccessful}
+                    onClose={handleClose}
+                />
             </div>
         )
     )
-    };
+};
 
 export default Ticketbooking;

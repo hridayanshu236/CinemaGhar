@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 
 const ConfirmationModal = ({ isOpen, onClose, onConfirm, selectedDate, selectedTime, selectedSeats, selectedMovie }) => {
     if (!isOpen) return null;
+  
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50" onClick={onClose}>

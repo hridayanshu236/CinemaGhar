@@ -4,6 +4,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./router/auth'); // Adjust path as needed
 const movieRoutes = require('./router/movie'); // Ensure this path is correct
+const bookingRoutes = require('./router/booking');
 
 require('dotenv').config();
 
@@ -24,6 +25,7 @@ app.use(express.json()); // For parsing application/json
 // Use routes from auth.js and movie.js
 app.use('/api/auth', authRoutes);
 app.use('/api/movies', movieRoutes); 
+app.use('/api/booking', bookingRoutes); 
 
 // Connect to MongoDB
 const DB = process.env.MONGODB_URI;
