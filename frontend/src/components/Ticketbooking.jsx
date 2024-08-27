@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import screen from '../assets/screen.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChair } from '@fortawesome/free-solid-svg-icons';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { BookedSeatsContext } from '../context/BookedSeatsContext';
 import ConfirmationModal from './ConfirmationModal'; // Import the modal component
 import BookingSuccessfulModal from './BookingSuccessfulModal';
+
 import axios from 'axios';
 
 const Ticketbooking = () => {
@@ -13,7 +15,7 @@ const Ticketbooking = () => {
     const navigate = useNavigate();
     const { selectedMovie } = location.state || {};
     const [bookingSuccessful, setBookingSuccessful] = useState(false);
-
+    const { bookedSeats, fetchBookedSeats} = useContext(BookedSeatsContext);
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedTime, setSelectedTime] = useState(null);
     const [selectedSeats, setSelectedSeats] = useState([]);
@@ -48,11 +50,17 @@ const Ticketbooking = () => {
             // Handle error (e.g., show an error message to the user)
         }
     };
-    const handleClose = ()=>{
+    const handleClose = () => {
         setBookingSuccessful(false);
         navigate('/');
-     }
- 
+    }
+
+    useEffect(() => {
+        if (selectedDate && selectedTime && selectedMovie) {
+            fetchBookedSeats(selectedMovie.title, selectedDate, selectedTime);
+        }
+    }, [ selectedTime, selectedDate, selectedMovie]); 
+    
     const handleDateSelect = (date) => {
         setSelectedDate(date);
         setSelectedTime(null); // Reset the selected time when a new date is selected
@@ -209,6 +217,7 @@ const Ticketbooking = () => {
                                         <button
                                             key={`${row}${seatNumber}`}
                                             onClick={() => handleSeatSelect(`${row}${seatNumber}`)}
+                                            disabled={bookedSeats.includes(`${row}${seatNumber}`)}
                                             className={`rounded-lg`}
                                         >
                                             <FontAwesomeIcon
@@ -216,6 +225,10 @@ const Ticketbooking = () => {
                                                 className={`transform transition-transform duration-300 hover:scale-125 w-6 h-6 ${selectedSeats.includes(`${row}${seatNumber}`)
                                                     ? 'text-purple-500 opacity-50'
                                                     : 'text-gray-500'
+                                                    }
+                                                    ${bookedSeats.includes(`${row}${seatNumber}`)
+                                                        ? 'text-red-500 opacity-50'
+                                                        :'text-gray-500'
                                                     }`}
                                             />
                                         </button>

@@ -4,9 +4,11 @@ import './index.css';
 import App from './App';
 import { AuthProvider } from './context/AuthContext';
 import { MovieProvider } from './context/MovieContext';
+import {BookedSeatsProvider } from './context/BookedSeatsContext'
 import {
   BrowserRouter
 } from "react-router-dom";
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,7 +16,9 @@ root.render(
     <BrowserRouter>
     <MovieProvider>
       <AuthProvider>
+        <BookedSeatsProvider>
         <App />
+        </BookedSeatsProvider>
       </AuthProvider>
     </MovieProvider>
     </BrowserRouter>
