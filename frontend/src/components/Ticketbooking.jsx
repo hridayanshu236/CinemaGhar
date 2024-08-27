@@ -4,6 +4,7 @@ import screen from '../assets/screen.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChair } from '@fortawesome/free-solid-svg-icons';
 import { useLocation, useNavigate } from 'react-router-dom';
+import ConfirmationModal from './ConfirmationModal'; // Import the modal component
 
 const Ticketbooking = () => {
     const location = useLocation();
@@ -13,6 +14,12 @@ const Ticketbooking = () => {
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedTime, setSelectedTime] = useState(null);
     const [selectedSeats, setSelectedSeats] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleConfirm = () => {
+        setIsModalOpen(false);
+        // Handle the booking confirmation here (e.g., send data to the server)
+    };
 
     const handleDateSelect = (date) => {
         setSelectedDate(date);
@@ -195,14 +202,23 @@ const Ticketbooking = () => {
                                     </p>
                                 </div>
                                 <div className='inline-block'>
-                                    <button className='bg-purple-500 text-white text-lg px-4 py-1 rounded-lg mt-2 hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500'>
-                                        Confirm
+                                    <button 
+                                    onClick={() => setIsModalOpen(true)} className='bg-purple-500 text-white text-lg px-4 py-1 rounded-lg mt-2 hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500'>
+                                        Book
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <ConfirmationModal
+                isOpen = {isModalOpen}
+                onClose= {() => setIsModalOpen(false)}
+                selectedDate = {selectedDate}
+                selectedMovie = {selectedMovie}
+                selectedTime = {selectedTime}
+                selectedSeats = {selectedSeats}
+                onConfirm = {handleConfirm} />
             </div>
         )
     )
