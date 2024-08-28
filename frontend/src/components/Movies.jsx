@@ -66,16 +66,31 @@ const Movies = () => {
       className={`relative transition-opacity duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
     >
       {mostPopularMovie && mostPopularMovie.poster_path ? (
-        <div className='relative'>
-          <img
-            src={`https://image.tmdb.org/t/p/w500${mostPopularMovie.poster_path}`}
-            alt={`${mostPopularMovie.title} poster`}
-            className='w-full h-auto object-cover rounded-lg shadow-lg'
-          />
-          <div className='absolute top-1 left-2'>
+        <div className='relative pb-3'>
+          <div className='block w-1/2 h-1/2 m-auto justify-center'>
+            <div className='w-full inline-block p-2 border shadow-xl rounded-lg'>
+              <img
+                src={`https://image.tmdb.org/t/p/w500${mostPopularMovie.poster_path}`}
+                alt={`${mostPopularMovie.title} poster`}
+                className='m-auto object-cover rounded-lg shadow-lg'
+              />
+            </div>
+            <div className=''>
+              <p className='text-2xl font-semibold p-2 text-center'>{mostPopularMovie.title}</p>
+            </div>
+          </div>
+          <div className='absolute top-1 left-0 '>
             <p className='font-bold text-black text-center text-3xl bg-opacity-60 p-4 rounded-lg'>
               <span className='text-purple-500'>Top</span> Rated
             </p>
+          </div>
+          <div className='flex relative justify-center p-2'>
+            <button
+              onClick={() => handleBuytickets(mostPopularMovie)}
+              className='bg-purple-500 text-white text-lg px-6 py-1 rounded-xl mt-2 hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500'
+            >
+              Buy Tickets
+            </button>
           </div>
         </div>
       ) : (

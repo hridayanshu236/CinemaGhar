@@ -38,6 +38,33 @@ exports.Bookings = async (req, res) => {
     }
 };
 
+exports.getBookingDetails = async (req, res) => {
+    try {
+        const userId = req.user._id;
+
+        // Fetch user data with populated bookings
+        const user = await UserModel.findById(userId)
+            .populate({
+                path: 'bookings',
+                // No need to populate screenings here
+                // The booking details are already embedded
+            })
+            .select('email bookings'); // Select only the fields you need
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        res.json({ 
+            email: user.email,
+            bookings: user.bookings // Includes details of movie, date, time, and seats
+        });
+    } catch (error) {
+        console.error('Error fetching user data:', error);
+        res.status(500).json({ error: 'Server error' });
+    }
+};
+
 exports.getBookedSeats = async (req, res) => {
     try {
         console.log('Received Query Parameters:', req.query);

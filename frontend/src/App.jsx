@@ -8,6 +8,7 @@ import About from "./components/About";
 import Rates from './components/Rates';
 import Movies from './components/Movies';
 import Signup from './components/Signup';
+import Profile from './components/Profile';
 import Ticketbooking from './components/Ticketbooking';
 
 
@@ -20,6 +21,7 @@ const App = () => {
           <Route path='/' element={<LandingPage/>} />
           <Route path='/login' element={<Login/>} />
           <Route path='/signup' element={<Signup/>} />
+          <Route path= '/profile' element ={<Profile/>}/>
           <Route path='/about' element={<About/>} />
           <Route path='/rates' element={<Rates/>} />
           <Route path='/movies' element={<Movies/>} />

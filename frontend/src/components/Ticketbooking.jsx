@@ -15,7 +15,7 @@ const Ticketbooking = () => {
     const navigate = useNavigate();
     const { selectedMovie } = location.state || {};
     const [bookingSuccessful, setBookingSuccessful] = useState(false);
-    const { bookedSeats, fetchBookedSeats} = useContext(BookedSeatsContext);
+    const { bookedSeats,setBookedSeats, fetchBookedSeats} = useContext(BookedSeatsContext);
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedTime, setSelectedTime] = useState(null);
     const [selectedSeats, setSelectedSeats] = useState([]);
@@ -52,6 +52,7 @@ const Ticketbooking = () => {
     };
     const handleClose = () => {
         setBookingSuccessful(false);
+        setBookedSeats([]); // Reset bookedSeats to empty array
         navigate('/');
     }
 
@@ -130,8 +131,8 @@ const Ticketbooking = () => {
                 </div>
 
                 <div className="flex flex-col basis-full sm:basis-2/3 min-w-[200px]">
-                    <div className="h-1/2 flex flex-col">
-                        <div className="h-1/2 inline-block text-center w-full pt-4">
+                    <div className=" flex flex-col">
+                        <div className=" inline-block text-center w-full pt-4">
                             <h1 className="text-center font-semibold text-lg">
                                 <span className='text-purple-500'>Select</span> Date
                             </h1>
@@ -222,13 +223,13 @@ const Ticketbooking = () => {
                                         >
                                             <FontAwesomeIcon
                                                 icon={faChair}
-                                                className={`transform transition-transform duration-300 hover:scale-125 w-6 h-6 ${selectedSeats.includes(`${row}${seatNumber}`)
-                                                    ? 'text-purple-500 opacity-50'
-                                                    : 'text-gray-500'
+                                                className={` w-6 h-6 ${selectedSeats.includes(`${row}${seatNumber}`)
+                                                    ? 'text-purple-500 opacity-50 transform transition-transform duration-300 hover:scale-125'
+                                                    : 'text-gray-500 '
                                                     }
                                                     ${bookedSeats.includes(`${row}${seatNumber}`)
                                                         ? 'text-red-500 opacity-50'
-                                                        :'text-gray-500'
+                                                        :'text-gray-500 transform transition-transform duration-300 hover:scale-125'
                                                     }`}
                                             />
                                         </button>

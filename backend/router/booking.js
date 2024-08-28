@@ -6,4 +6,5 @@ const checkAuth = require('../middleware/authMiddleware');
 
 router.post('/create',checkAuth, bookingController.Bookings);
 router.get('/booked-seats', bookingController.getBookedSeats);
+router.get('/booking-details',checkAuth, bookingController.getBookingDetails  );
 module.exports = router;

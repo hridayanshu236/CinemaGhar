@@ -13,7 +13,7 @@ const UserSchema = new mongoose.Schema({
     // Reference to Booking schema
     bookings: [{ 
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Booking' 
+        ref: 'Bookings' 
     }] 
     // refreshToken: {
     //     type: String, // Store the refresh token here

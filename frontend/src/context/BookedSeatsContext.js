@@ -19,7 +19,7 @@ export const BookedSeatsProvider = ({ children }) => {
     };
 
     return (
-        <BookedSeatsContext.Provider value={{ bookedSeats, fetchBookedSeats }}>
+        <BookedSeatsContext.Provider value={{ bookedSeats,setBookedSeats, fetchBookedSeats }}>
             {children}
         </BookedSeatsContext.Provider>
     );

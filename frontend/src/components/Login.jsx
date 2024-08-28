@@ -1,6 +1,7 @@
 import React, {useContext, useState } from 'react';
 
 import Loginsnap from "../assets/Login.jpg";
+import login from '../assets/login1.jpg'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash, } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
@@ -123,7 +124,7 @@ const Login = () => {
     return (
         <div className="flex flex-col md:flex-row flex-wrap">
             <div className='w-full md:w-1/2'>
-                <img className="w-full min-h-screen" src={Loginsnap} alt="Book Tickets" />
+                <img className="w-full min-h-screen" src={login} alt="Book Tickets" />
             </div>
             <div className='w-full md:w-1/2 flex flex-col justify-evenly items-center pt-5'>
                 <div className="font-poppins font-bold text-4xl">
