@@ -2,7 +2,13 @@
   "version": 2,
   "functions": {
     "api/**/*.js": {
-      "runtime": "nodejs16.x"
+      "runtime": "nodejs18.x"
     }
-  }
+  },
+  "builds": [
+    {
+      "src": "api/index.js",
+      "use": "@vercel/node"
+    }
+  ]
 }
