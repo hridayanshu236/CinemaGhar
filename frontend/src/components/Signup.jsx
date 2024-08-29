@@ -89,7 +89,7 @@ const Signup = () => {
     // Clear any previous errors and show success
     setFormError(inputError); // Clear previous errors
 
-  axios.post('cinema-ghar-api.vercel.app/api/auth/signup', {
+  axios.post('https://cinema-ghar-api.vercel.app/api/auth/signup', {
     email: formInput.email,
     password: formInput.password
   })

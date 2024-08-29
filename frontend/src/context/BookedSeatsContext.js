@@ -8,7 +8,7 @@ export const BookedSeatsProvider = ({ children }) => {
 
     const fetchBookedSeats = async (title, date, time) => {
         try {
-            const response = await axios.get('cinema-ghar-api.vercel.app/api/booking/booked-seats', {
+            const response = await axios.get('https://cinema-ghar-api.vercel.app/api/booking/booked-seats', {
                 params: { title, date, time },
                 withCredentials: true,
             });
