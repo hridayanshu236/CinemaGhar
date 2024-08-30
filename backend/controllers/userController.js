@@ -33,7 +33,7 @@ exports.login = async (req, res) => {
 
       res.cookie('authToken', token, {
           httpOnly: true,
-          secure: process.env.NODE_ENV === 'production', // Use secure flag in production
+          secure: false, // Use secure flag in production
           maxAge: 3600000 // 1 hour
       });
 

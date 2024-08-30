@@ -30,7 +30,7 @@ const Ticketbooking = () => {
     };
     const handleConfirm = async () => {
         try {
-            const response = await axios.post('https://cinema-ghar-api.vercel.app/api/booking/create', {
+            const response = await axios.post('http://localhost:3001/api/booking/create', {
 
                 title: selectedMovie.title,
                 date: selectedDate,
