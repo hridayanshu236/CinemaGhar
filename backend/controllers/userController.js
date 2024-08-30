@@ -92,7 +92,7 @@ exports.signup = async (req, res) => {
     const newUser = await UserModel.create({ email, password: hashedPassword });
 
     console.log('User created successfully');
-    res.status(201).json({email, token});
+    res.status(201).json({email});
   } catch (error) {
     console.error('Error during signup:', error);
     res.status(500).json({ error: 'Unable to create user', details: error });
