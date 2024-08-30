@@ -11,42 +11,42 @@ const createToken = (_id) =>{
 // Function to handle user login
 exports.login = async (req, res) => {
   const startTime = Date.now();
-  
+  console.log('Login function started');
+
   try {
-    const { email, password } = req.body;
-    console.log('Login request received:', email);
+      const { email, password } = req.body;
+      console.log('Login request received:', email);
 
-    const user = await UserModel.findOne({ email });
-    if (!user) {
-      console.log('No user found with this email:', email);
-      return res.status(404).json({ error: 'No user found with this email' });
-    }
+      const user = await UserModel.findOne({ email });
+      if (!user) {
+          console.log('No user found with this email:', email);
+          return res.status(404).json({ error: 'No user found with this email' });
+      }
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      console.log('Invalid credentials for user:', email);
-      return res.status(400).json({ error: 'Invalid credentials' });
-    }
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) {
+          console.log('Invalid credentials for user:', email);
+          return res.status(400).json({ error: 'Invalid credentials' });
+      }
 
-    const token = createToken(user._id);
+      const token = createToken(user._id);
 
-    res.cookie('authToken', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production', // Use secure flag in production
-      maxAge: 3600000 // 1 hour
-    });
+      res.cookie('authToken', token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === 'production', // Use secure flag in production
+          maxAge: 3600000 // 1 hour
+      });
 
-    console.log('Login successful for user:', email);
-    res.json({ message: 'Success', token });
+      console.log('Login successful for user:', email);
+      res.json({ message: 'Success', token });
   } catch (error) {
-    console.error('Error during login:', error);
-    res.status(500).json({ error: 'Server error' });
+      console.error('Error during login:', error);
+      res.status(500).json({ error: 'Server error' });
   } finally {
-    const endTime = Date.now();
-    console.log(`Login function execution time: ${endTime - startTime}ms`);
+      const endTime = Date.now();
+      console.log(`Login function execution time: ${endTime - startTime}ms`);
   }
 };
-
 exports.logout = (req, res) => {
   res.cookie('authToken', '', {
     httpOnly: true,

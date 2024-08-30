@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
     email: {
@@ -10,7 +10,6 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    // Reference to Booking schema
     bookings: [{ 
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Bookings' 
@@ -21,5 +20,8 @@ const UserSchema = new mongoose.Schema({
     // }
 });
 
-const UserModel = mongoose.model("Users", UserSchema)
-module.exports = UserModel
+// Index the email field to speed up queries
+UserSchema.index({ email: 1 });
+
+const UserModel = mongoose.model("Users", UserSchema);
+module.exports = UserModel;
