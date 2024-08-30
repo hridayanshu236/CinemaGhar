@@ -89,7 +89,9 @@ exports.signup = async (req, res) => {
     // const token = createToken(user._id)
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = await UserModel.create({ email, password: hashedPassword });
+    const newUser = await UserModel.create({
+      _id: new mongoose.Types.ObjectId(), 
+      email, password: hashedPassword });
 
     console.log('User created successfully');
     res.status(201).json({email});
