@@ -35,16 +35,16 @@ app.get("/", (req,res) => {
 });
 
 // Connect to MongoDB
-const DB = process.env.MONGODB_URI;
 mongoose.connect(DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-})
+    serverSelectionTimeoutMS: 30000 // Increase timeout to 30 seconds
+  })
     .then(() => {
-        console.log('Database Connection successful');
+      console.log('Database Connection successful');
     })
     .catch((err) => {
-        console.error('No connection:', err);
+      console.error('No connection:', err);
     });
 
 // Global error handlers
