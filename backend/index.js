@@ -23,12 +23,14 @@ app.use(cookieParser()); // Add cookie parser middleware
 app.use(express.json()); // For parsing application/json
 
 // Use routes from auth.js and movie.js
-app.use("/api", (req,res) => {
-    res.json("Hello");
-})
+
 app.use('/api/auth', authRoutes);
 app.use('/api/movies', movieRoutes); 
 app.use('/api/booking', bookingRoutes); 
+
+app.get("/", (req,res) => {
+    res.json({message:"Hello from backend"});
+});
 
 // Connect to MongoDB
 const DB = process.env.MONGODB_URI;
