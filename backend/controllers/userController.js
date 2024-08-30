@@ -10,6 +10,8 @@ const createToken = (_id) =>{
 
 // Function to handle user login
 exports.login = async (req, res) => {
+  const startTime = Date.now();
+  
   try {
     const { email, password } = req.body;
     console.log('Login request received:', email);
@@ -26,13 +28,11 @@ exports.login = async (req, res) => {
       return res.status(400).json({ error: 'Invalid credentials' });
     }
 
-    // Generate a token for the user
     const token = createToken(user._id);
 
-    // Set the token in a cookie
     res.cookie('authToken', token, {
       httpOnly: true,
-      secure: true,
+      secure: process.env.NODE_ENV === 'production', // Use secure flag in production
       maxAge: 3600000 // 1 hour
     });
 
@@ -41,8 +41,12 @@ exports.login = async (req, res) => {
   } catch (error) {
     console.error('Error during login:', error);
     res.status(500).json({ error: 'Server error' });
+  } finally {
+    const endTime = Date.now();
+    console.log(`Login function execution time: ${endTime - startTime}ms`);
   }
 };
+
 exports.logout = (req, res) => {
   res.cookie('authToken', '', {
     httpOnly: true,
