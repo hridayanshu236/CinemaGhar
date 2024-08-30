@@ -12,7 +12,7 @@ const app = express();
 
 // CORS configuration
 const corsOptions = {
-    origin: "*",
+    origin: "https://cinema-ghar-frontend.vercel.app",
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true // Allow cookies and credentials
 };
@@ -27,6 +27,8 @@ app.use(express.json()); // For parsing application/json
 app.use('/api/auth', authRoutes);
 app.use('/api/movies', movieRoutes); 
 app.use('/api/booking', bookingRoutes); 
+
+
 
 app.get("/", (req,res) => {
     res.json({message:"Hello from backend"});
