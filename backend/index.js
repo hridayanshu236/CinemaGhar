@@ -23,7 +23,7 @@ app.use(cookieParser()); // Add cookie parser middleware
 app.use(express.json()); // For parsing application/json
 
 // Use routes from auth.js and movie.js
-app.get("/", (req,res) => {
+app.use("/api", (req,res) => {
     res.json("Hello");
 })
 app.use('/api/auth', authRoutes);
