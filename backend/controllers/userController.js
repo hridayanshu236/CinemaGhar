@@ -32,7 +32,7 @@ exports.login = async (req, res) => {
     // Set the token in a cookie
     res.cookie('authToken', token, {
       httpOnly: true,
-      secure: false,
+      secure: true,
       maxAge: 3600000 // 1 hour
     });
 
