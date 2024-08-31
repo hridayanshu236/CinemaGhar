@@ -55,6 +55,7 @@ exports.logout = (req, res) => {
   res.cookie('authToken', '', {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
+    sameSite: 'None',
     expires: new Date(0) // Set expiry date to past
   });
 
