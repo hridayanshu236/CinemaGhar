@@ -35,7 +35,7 @@ exports.login = async (req, res) => {
 
       res.cookie('authToken', token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production', // Ensure it's true in production
+        secure: process.env.NODE_ENV, // Ensure it's true in production
         sameSite: 'None', 
         maxAge: 3600000 // 1 hour
     });
@@ -54,7 +54,7 @@ exports.login = async (req, res) => {
 exports.logout = (req, res) => {
   res.cookie('authToken', '', {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
+    secure: process.env.NODE_ENV,
     sameSite: 'None',
     expires: new Date(0) // Set expiry date to past
   });
