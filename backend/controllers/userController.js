@@ -1,3 +1,4 @@
+const mongoose = require('mongoose'); // Import mongoose
 const UserModel = require('../models/User');
 // const BookingModel = require('../models/Booking');
 const bcrypt = require('bcrypt');
