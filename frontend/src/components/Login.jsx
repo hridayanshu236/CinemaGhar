@@ -93,7 +93,7 @@ const Login = () => {
         //   successMsg: "Incorrect Password",
         // }));
         try {
-            const response = await axios.post('https://cinema-ghar-backend.vercel.app/api/auth/login', {
+            const response = await axios.post('${process.env.REACT_APP_BACKEND_URL}/api/auth/login', {
                 email: formInput.email,
                 password: formInput.password
             },{

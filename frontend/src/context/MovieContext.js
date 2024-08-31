@@ -10,7 +10,7 @@ export const MovieProvider = ({ children }) => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const response = await axios.get('https://cinema-ghar-backend.vercel.app/api/movies/get-movies'); // Your backend endpoint
+        const response = await axios.get('${process.env.REACT_APP_BACKEND_URL}/api/movies/get-movies'); // Your backend endpoint
         const movieList = response.data;
         setMovies(movieList);
 

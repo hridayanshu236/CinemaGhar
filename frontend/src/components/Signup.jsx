@@ -89,7 +89,7 @@ const Signup = () => {
     // Clear any previous errors and show success
     setFormError(inputError); // Clear previous errors
 
-  axios.post('https://cinema-ghar-backend.vercel.app/api/auth/signup', {
+  axios.post('${process.env.REACT_APP_BACKEND_URL}/api/auth/signup', {
     email: formInput.email,
     password: formInput.password
   })
