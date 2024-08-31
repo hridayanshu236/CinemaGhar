@@ -1,9 +1,11 @@
 import { faAppStore, faFacebook, faGithub, faGooglePlay, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import React, {useContext} from 'react';
+import { NavLink } from 'react-router-dom';
+import AuthContext from '../context/AuthContext';
 
 const Footer = () => {
+    const {isLoggedIn} = useContext(AuthContext);
     return (
         <footer className="w-full flex flex-col justify-between items-center  text-white bg-black py-[15px] border-y border-gray-700">
             <div className="w-full flex justify-between  pl-4">
@@ -43,7 +45,8 @@ const Footer = () => {
                 >
                     Rates
                 </NavLink></li>
-                        {/* <li className='my-[5px] mx-[10px] text-lg cursor-pointer'><NavLink
+                {!isLoggedIn ? (
+                        <li className='my-[5px] mx-[10px] text-lg cursor-pointer'><NavLink
                     to="/login"
                     className={({ isActive }) =>
                         `w-full h-full py-[10px] px-[30px] m-0 text-xl block font-medium hover:bg-white hover:text-purple-500 sm:text-lg sm:hover:bg-transparent sm:p-0 transition-all ease-in duration-300 ${isActive
@@ -53,7 +56,8 @@ const Footer = () => {
                     }
                 >
                     Login
-                </NavLink></li> */}
+                </NavLink></li>
+                ):''}
                         <li className='my-[5px] mx-[10px] text-lg cursor-pointer'> <NavLink
                     to="/about"
                     className={({ isActive }) =>
@@ -90,8 +94,8 @@ const Footer = () => {
                     <li className='inline-block'>&copy; 2024 CinemaGhar. All rights reserved.</li>
                 </ul>
                 <ul className='flex'>
-                    <li className='inline-block ml-4 cursor-pointer'>Privacy Policy</li>
-                    <li className='inline-block ml-4 cursor-pointer'>Terms & Conditions</li>
+                    <li className='inline-block ml-4 cursor-pointer'> <NavLink to='/privacypolicy'>Privacy Policy</NavLink></li>
+                    <li className='inline-block ml-4 cursor-pointer'><NavLink to='/termsandconditions'>Terms & Conditions</NavLink></li>
                 </ul>
             </div>
 

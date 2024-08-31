@@ -10,6 +10,8 @@ import Movies from './components/Movies';
 import Signup from './components/Signup';
 import Profile from './components/Profile';
 import Ticketbooking from './components/Ticketbooking';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import TermsAndConditions from './components/TermsAndConditions';
 
 
 const App = () => {
@@ -25,6 +27,8 @@ const App = () => {
           <Route path='/about' element={<About/>} />
           <Route path='/rates' element={<Rates/>} />
           <Route path='/movies' element={<Movies/>} />
+          <Route path='/termsandconditions' element={<TermsAndConditions/>} />
+          <Route path='/privacypolicy' element={<PrivacyPolicy/>} />
           <Route path='/ticketbooking' element={<Ticketbooking/>} />
         </Routes>
       </div>
