@@ -38,6 +38,7 @@ exports.login = async (req, res) => {
       });
 
       console.log('Login successful for user:', email);
+      console.log('Token:', token);
       res.json({ message: 'Success', token });
   } catch (error) {
       console.error('Error during login:', error);
