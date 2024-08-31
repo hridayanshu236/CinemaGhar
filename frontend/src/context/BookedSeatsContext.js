@@ -8,7 +8,7 @@ export const BookedSeatsProvider = ({ children }) => {
 
     const fetchBookedSeats = async (title, date, time) => {
         try {
-            const response = await axios.get('${process.env.REACT_APP_BACKEND_URL}/api/booking/booked-seats', {
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/booking/booked-seats`, {
                 params: { title, date, time },
                 withCredentials: true,
             });

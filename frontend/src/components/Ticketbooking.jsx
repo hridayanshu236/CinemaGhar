@@ -30,7 +30,7 @@ const Ticketbooking = () => {
     };
     const handleConfirm = async () => {
         try {
-            const response = await axios.post('${process.env.REACT_APP_BACKEND_URL}/api/booking/create', {
+            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/booking/create`, {
 
                 title: selectedMovie.title,
                 date: selectedDate,

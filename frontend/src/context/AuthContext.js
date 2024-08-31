@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }) => {
 
     const checkLoginStatus = async () => {
         try {
-            const response = await fetch('${process.env.REACT_APP_BACKEND_URL}/api/auth/check-status', {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/check-status`, {
                 method: 'GET',
                 credentials: 'include'
             });
