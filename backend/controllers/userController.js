@@ -30,6 +30,7 @@ exports.login = async (req, res) => {
       }
 
       const token = createToken(user._id);
+      console.log('Token:', token); 
 
       res.cookie('authToken', token, {
           httpOnly: true,
