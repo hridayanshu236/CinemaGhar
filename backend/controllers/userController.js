@@ -33,10 +33,11 @@ exports.login = async (req, res) => {
       console.log('Token:', token); 
 
       res.cookie('authToken', token, {
-          httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
-          maxAge: 3600000 // 1 hour
-      });
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production', // Ensure it's true in production
+        sameSite: 'None', 
+        maxAge: 3600000 // 1 hour
+    });
 
       console.log('Login successful for user:', email);
       console.log('Token:', token);

@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 
 // Middleware to check if the user is logged in
 const checkAuth = (req, res, next) => {
+    console.log('Cookies:', req.cookies);
     const token = req.cookies.authToken;
     console.log('Token received:', token);
 
