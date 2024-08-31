@@ -16,7 +16,6 @@ const checkAuth = (req, res, next) => {
             console.error('Token verification error:', err);
             return res.status(401).json({ isLoggedIn: false });
         }
-
         req.user = decoded;
         next();
     });
