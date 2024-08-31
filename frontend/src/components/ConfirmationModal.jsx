@@ -7,7 +7,7 @@ const ConfirmationModal = ({ isOpen, onClose, onConfirm, selectedDate, selectedT
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50" onClick={onClose}>
-            <div className="bg-white justify-center  flex flex-col p-6 rounded-lg shadow-lg w-1/3" onClick={(e) => e.stopPropagation()}>
+            <div className="bg-white justify-center  flex flex-col p-6 rounded-lg shadow-lg " onClick={(e) => e.stopPropagation()}>
                 <div className=''>
                     <h2 className="text-xl font-semibold mb-4">Confirm Booking</h2>
                     <p className="mb-4">Are you sure you want to book this movie?</p>

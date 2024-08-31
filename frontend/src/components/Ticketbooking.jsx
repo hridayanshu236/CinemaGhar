@@ -136,12 +136,12 @@ const Ticketbooking = () => {
                             <h1 className="text-center font-semibold text-lg">
                                 <span className='text-purple-500'>Select</span> Date
                             </h1>
-                            <div className="flex flex-wrap justify-center space-x-4 p-4 text-center">
+                            <div className="flex flex-wrap justify-center space-x-4 space-y-4  p-4 text-center">
                                 {dates.map((date) => (
                                     <button
                                         key={date}
                                         onClick={() => handleDateSelect(date)}
-                                        className={`px-4 py-2 rounded-lg text-white ${selectedDate === date
+                                        className={`px-4 py-3 rounded-lg text-white  ${selectedDate === date
                                             ? 'bg-purple-500'
                                             : 'bg-gray-500 hover:bg-gray-700'
                                             }`}
@@ -155,7 +155,7 @@ const Ticketbooking = () => {
                             <h1 className="text-center font-semibold text-lg">
                                 <span className='text-purple-500'>Select</span> Time
                             </h1>
-                            <div className="inline-block justify-center space-x-4 p-4 text-center">
+                            <div className="inline-block justify-center space-x-4 space-y-4 p-4 text-center">
                                 {timeslots.map((time) => {
                                     const timeDayjs = timeStringToDayjs(time);
 

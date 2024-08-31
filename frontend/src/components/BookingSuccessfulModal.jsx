@@ -8,7 +8,7 @@ const BookingSuccessfulModal = ({ isOpen, onClose }) => {
     
     return (
         <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50" onClick={onClose}>
-           <div className="bg-white justify-center  flex flex-col p-6 rounded-lg shadow-lg w-1/3" onClick={(e) => e.stopPropagation()}>
+           <div className="bg-white justify-center  flex flex-col p-6 rounded-lg shadow-lg " onClick={(e) => e.stopPropagation()}>
            <h1 className="text-2xl font-semibold text-green-500">Booking Successful!</h1>
                 <p className="text-lg mt-4">Thank you for booking with us. Your reservation is confirmed.</p>
                 <button

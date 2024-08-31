@@ -58,7 +58,7 @@ const Movies = () => {
     }
   };
 
-  const moviesToDisplay = movies.slice(0, 5);
+  const moviesToDisplay = movies.slice(0, 10);
 
   return (
     <div

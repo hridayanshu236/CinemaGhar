@@ -34,9 +34,11 @@ const LandingPage = () => {
             <section 
             ref={ref}
             className={` flex flex-col items-center mt-20 relative transition-opacity duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                <h1 className='text-6xl lg:text-[4rem] uppercase font-bold'>
+                <div className='flex w-full justify-center p-l-4 p-r-4'>
+                <h1 className='text-5xl lg:text-[4rem] uppercase font-bold'>
                     <span className='text-purple-500'> Cinema</span>Ghar
                 </h1>
+                </div>
                 <p className='lg:mt-6 text-sm mb-4 font-medium -tracking-tighter'>
                     Your Ultimate Movie Experience Starts Here
                 </p>

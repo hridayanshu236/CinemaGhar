@@ -66,13 +66,13 @@ const Profile = () => {
                     <h1>Welcome, {userData.email}</h1>
                 </div>
             </div>
-            <div className="flex flex-row border-l-2  border-purple-500 h-full w-full">
-                <div className="flex flex-col w-1/4 border-b-2 border-purple-500">
+            <div className="flex flex-row  h-full w-full ">
+                <div className="flex flex-col w-1/4 border-2 border-purple-500 mr-1">
                     <ul>
-                        <li className={`p-4 text-lg cursor-pointer border-t-2 border-purple-500 ${view === 'active' ? 'text-purple-500' : ''}`}
+                        <li className={`p-4 text-lg cursor-pointer border-b-2 border-purple-500 ${view === 'active' ? 'text-purple-500' : ''}`}
                             onClick={() => setView('active')}
                         >Active Tickets</li>
-                        <li className={`p-4 text-lg cursor-pointer ${view === 'history' ? 'text-purple-500' : ''}`}
+                        <li className={`p-4 text-lg cursor-pointer  border-purple-500 ${view === 'history' ? 'text-purple-500' : ''}`}
                             onClick={() => setView('history')}
                         >
                             History</li>
