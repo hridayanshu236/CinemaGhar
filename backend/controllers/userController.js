@@ -50,7 +50,7 @@ exports.login = async (req, res) => {
 exports.logout = (req, res) => {
   res.cookie('authToken', '', {
     httpOnly: true,
-    secure: false,
+    secure: process.env.NODE_ENV === 'production',
     expires: new Date(0) // Set expiry date to past
   });
 

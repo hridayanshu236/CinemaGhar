@@ -14,7 +14,7 @@ const Profile = () => {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/api/booking/booking-details', {
+                const response = await axios.get('https://cinema-ghar-backend.vercel.app/api/booking/booking-details', {
                     withCredentials: true
                 });
                 setUserData(response.data);

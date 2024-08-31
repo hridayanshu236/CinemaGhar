@@ -12,7 +12,7 @@ const app = express();
 
 // CORS configuration
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: 'https://cinema-ghar-frontend.vercel.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true // Allow cookies and credentials
 };
