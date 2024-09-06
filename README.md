@@ -78,6 +78,23 @@ You can view the live application here: [CinemaGhar](https://cinema-ghar-fronten
 ## Usage
 - Visit the frontend application in your browser to browse movies, select showtimes, and book tickets.
 
+## Screenshots
+
+### Hero Section
+![Hero Section](./Images/Hero.png)
+
+### Top Rated Movies
+![Top Rated Movies](./Images/TopRated.png)
+
+### Now Showing
+![Now Showing](./Images/NowShowing.png)
+
+### Login Page
+![Login Page](./Images/Login.png)
+
+### Booking Page
+![Booking Page](./Images/Booking.png)
+
 
 
 
