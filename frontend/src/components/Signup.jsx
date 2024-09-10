@@ -8,6 +8,9 @@ import axios from 'axios';
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [successMsg, setSuccessMsg] = useState("");
+  const [verificationMsg, setVerificationMsg] = useState("");  // New state for verification message
+  const navigate = useNavigate();
 
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
@@ -17,9 +20,7 @@ const Signup = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    successMsg: "",
   });
-  const navigate = useNavigate(); // Initialize navigate
 
   const [formError, setFormError] = useState({
     email: "",
@@ -35,100 +36,56 @@ const Signup = () => {
     });
   };
 
-  // const validateFormInput = (event) => {
-  //   event.preventDefault();
-
-  // Initialize an object to track input errors
-
-
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     let inputError = {
       email: "",
       password: "",
       confirmPassword: "",
     };
 
-    // Check if email and password are empty
-    if (!formInput.email && !formInput.password) {
-      setFormError({
-        ...inputError,
-        email: "Enter a valid email address",
-        password: "Password should not be empty",
-      });
-      return;
-    }
-
-    // Check if email is empty
+    // Validation
     if (!formInput.email) {
-      setFormError({
-        ...inputError,
-        email: "Enter a valid email address",
-      });
+      setFormError({ ...inputError, email: "Enter a valid email address" });
       return;
     }
 
-    // Check if password and confirm password match
     if (formInput.confirmPassword !== formInput.password) {
-      setFormError({
-        ...inputError,
-        confirmPassword: "Password and confirm password should be the same",
-      });
+      setFormError({ ...inputError, confirmPassword: "Passwords do not match" });
       return;
     }
 
-    // Check if password is empty
     if (!formInput.password) {
-      setFormError({
-        ...inputError,
-        password: "Password should not be empty",
-      });
+      setFormError({ ...inputError, password: "Password should not be empty" });
       return;
     }
 
-    // Clear any previous errors and show success
     setFormError(inputError); // Clear previous errors
 
-  axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/signup`, {
-    email: formInput.email,
-    password: formInput.password
-  })
-  .then(response => {
-    // Handle successful signup
-    console.log('Signup successful:', response.data);
-    // You might want to redirect or clear the form here
-    setFormInput({
-      email: "",
-      password: "",
-      confirmPassword: "",
-      successMsg: "Signup successful! Please log in."
-    });
-    navigate('/login')
-  })
-  .catch(error => {
-    let errorMsg = "An unexpected error occurred. Please try again.";
-    
-    if (error.response) {
-      // Server responded with a status other than 2xx
-      if (error.response.status === 400) {
-        const errorMessage = error.response.data.error;
-        if (errorMessage === "Email already in use") {
-          errorMsg = "Email already in use";
-        }
-      } else if (error.response.status === 500) {
-        errorMsg = "Server error. Please try again later.";
-      }
-    } else if (error.request) {
-      // Request was made but no response received
-      errorMsg = "Network error. Please check your connection.";
-    }
+    // Signup API request
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/signup`, {
+      email: formInput.email,
+      password: formInput.password,
+    })
+    .then(response => {
+      // Notify user to verify their email
+      setSuccessMsg("Signup successful! Please check your email to verify your account.");
+      setVerificationMsg("Verification email sent to " + formInput.email + ". Check your inbox.");  // New message
 
-    setFormError({
-      ...inputError,
-      successMsg: errorMsg, 
+      // Clear form inputs
+      setFormInput({ email: "", password: "", confirmPassword: "" });
+
+      // Optionally, navigate to a verification page
+      // navigate('/email-verification');
+    })
+    .catch(error => {
+      let errorMsg = "An unexpected error occurred. Please try again.";
+      if (error.response && error.response.status === 400) {
+        errorMsg = error.response.data.error === "Email already in use" ? "Email already in use" : errorMsg;
+      }
+      setFormError({ ...inputError, email: errorMsg });
     });
-  });
-  }
+  };
 
   return (
     <div className="flex flex-col md:flex-row flex-wrap">
@@ -167,7 +124,6 @@ const Signup = () => {
                 placeholder="Enter your password"
               />
               <p className='text-red-700'>{formError.password}</p>
-
             </div>
             <div className="relative mb-4">
               <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 pb-1 pl-1">Confirm Password:</label>
@@ -191,9 +147,9 @@ const Signup = () => {
                 />
               </button>
               <p className='text-red-700'>{formError.confirmPassword}</p>
-              <p className='text-red-700'>{formError.successMsg}</p>
             </div>
-            {/* <p>{formInput.successMsg}</p> */}
+            {successMsg && <p className="text-green-600 mb-4">{successMsg}</p>}
+            {verificationMsg && <p className="text-blue-600 mb-4">{verificationMsg}</p>}
             <div>
               <p className="text-black text-center">
                 Already have an account?{" "}
@@ -212,7 +168,6 @@ const Signup = () => {
               </button>
             </div>
           </form>
-
           <div className="flex justify-center">
             <ul>
               <li className='my-[5px] pt-3 mx-[10px] text-5xl cursor-pointer transform transition-transform duration-300 hover:scale-125 hover:text-blue-500 inline-block px-2'><FontAwesomeIcon icon={faFacebook} /> </li>

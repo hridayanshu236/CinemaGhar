@@ -136,7 +136,7 @@ const Ticketbooking = () => {
                             <h1 className="text-center font-semibold text-lg">
                                 <span className='text-purple-500'>Select</span> Date
                             </h1>
-                            <div className="flex flex-wrap justify-center space-x-4 space-y-4  p-4 text-center">
+                            <div className="inline-block justify-center space-x-4 space-y-4  p-4 text-center">
                                 {dates.map((date) => (
                                     <button
                                         key={date}

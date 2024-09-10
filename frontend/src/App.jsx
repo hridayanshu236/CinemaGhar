@@ -12,6 +12,7 @@ import Profile from './components/Profile';
 import Ticketbooking from './components/Ticketbooking';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsAndConditions from './components/TermsAndConditions';
+import VerifyEmail from './components/VerifyEmail';
 
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
           <Route path='/movies' element={<Movies/>} />
           <Route path='/termsandconditions' element={<TermsAndConditions/>} />
           <Route path='/privacypolicy' element={<PrivacyPolicy/>} />
+          <Route path="/verify-email/:token" element={<VerifyEmail />} />
           <Route path='/ticketbooking' element={<Ticketbooking/>} />
         </Routes>
       </div>

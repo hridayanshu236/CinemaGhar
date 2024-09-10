@@ -10,6 +10,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    isVerified: { 
+        type: Boolean, 
+        default: false 
+    },
     bookings: [{ 
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Bookings' 
