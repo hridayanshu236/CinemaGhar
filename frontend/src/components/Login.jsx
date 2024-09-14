@@ -13,6 +13,7 @@ import AuthContext from '../context/AuthContext';
 const Login = () => {
     const { checkLoginStatus } = useContext(AuthContext);
     const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const handleTogglePassword = () => {
         setShowPassword(!showPassword);
@@ -93,6 +94,7 @@ const Login = () => {
         //   successMsg: "Incorrect Password",
         // }));
         try {
+            setLoading(true);
             const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`, {
                 email: formInput.email,
                 password: formInput.password
@@ -115,8 +117,10 @@ const Login = () => {
             console.error('Error during login:', err);
             setFormError({
                 ...inputError,
-                successMsg: "An error occurred. Please try again.",
+                successMsg: ("An error occurred. Please try again."),
             });
+        }finally{
+            setLoading(false);
         }
            
     }
@@ -195,9 +199,13 @@ const Login = () => {
                 <button
                   id="Login"
                   name="Login"
-                  className="w-full py-3 bg-purple-500 text-white font-bold rounded-md hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  className={`w-full py-3 ${
+                    loading ? "bg-gray-400" : "bg-purple-500"
+                  } text-white font-bold rounded-md hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500`}
+                  disabled={loading} // Disable the button when loading
                 >
-                  Login
+                  {loading ? "Loading..." : "Login"}{" "}
+                  {/* Show Loading... while loading */}
                 </button>
               </div>
             </form>

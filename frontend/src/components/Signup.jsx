@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import Loginsnap from "../assets/login1.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { faFacebook, faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
-import { NavLink, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFacebook,
+  faGithub,
+  faGoogle,
+} from "@fortawesome/free-brands-svg-icons";
+import { NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [successMsg, setSuccessMsg] = useState("");
-  const [verificationMsg, setVerificationMsg] = useState("");  // New state for verification message
+  const [verificationMsg, setVerificationMsg] = useState(""); // New state for verification message
+  const [loading, setLoading] = useState(false); // Loading state for the signup button
   const navigate = useNavigate();
 
   const handleTogglePassword = () => {
@@ -51,7 +56,10 @@ const Signup = () => {
     }
 
     if (formInput.confirmPassword !== formInput.password) {
-      setFormError({ ...inputError, confirmPassword: "Passwords do not match" });
+      setFormError({
+        ...inputError,
+        confirmPassword: "Passwords do not match",
+      });
       return;
     }
 
@@ -62,36 +70,52 @@ const Signup = () => {
 
     setFormError(inputError); // Clear previous errors
 
+    // Set loading to true before making the API request
+    setLoading(true);
+
     // Signup API request
-    axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/signup`, {
-      email: formInput.email,
-      password: formInput.password,
-    })
-    .then(response => {
-      // Notify user to verify their email
-      setSuccessMsg("Signup successful! Please check your email to verify your account.");
-      setVerificationMsg("Verification email sent to " + formInput.email + ". Check your inbox.");  // New message
+    axios
+      .post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/signup`, {
+        email: formInput.email,
+        password: formInput.password,
+      })
+      .then((response) => {
+        // Notify user to verify their email
+        setSuccessMsg(
+          "Signup successful! Please check your email to verify your account."
+        );
+        setVerificationMsg(
+          "Verification email sent to " +
+            formInput.email +
+            ". Check your inbox."
+        );
 
-      // Clear form inputs
-      setFormInput({ email: "", password: "", confirmPassword: "" });
+        // Clear form inputs
+        setFormInput({ email: "", password: "", confirmPassword: "" });
 
-      // Optionally, navigate to a verification page
-      // navigate('/email-verification');
-    })
-    .catch(error => {
-      let errorMsg = "An unexpected error occurred. Please try again.";
-      if (error.response && error.response.status === 400) {
-        errorMsg = error.response.data.error === "Email already in use" ? "Email already in use" : errorMsg;
-      }
-      setFormError({ ...inputError, email: errorMsg });
-    });
+        // Set loading to false after response
+        setLoading(false);
+
+        // Optionally, navigate to a verification page
+        // navigate('/email-verification');
+      })
+      .catch((error) => {
+        let errorMsg = "An unexpected error occurred. Please try again.";
+        if (error.response && error.response.status === 400) {
+          errorMsg =
+            error.response.data.error === "Email already in use"
+              ? "Email already in use"
+              : errorMsg;
+        }
+        setFormError({ ...inputError, email: errorMsg });
+
+        // Set loading to false in case of error
+        setLoading(false);
+      });
   };
 
   return (
     <div className="flex flex-row flex-wrap justify-center min-h-[100vh] my-auto bg-gradient-to-r from-purple-100 to-slate-100 ">
-      {/* <div className='w-full '>
-        <img className="w-full min-h-screen" src={Loginsnap} alt="Book Tickets" />
-      </div> */}
       <div className="w-full  flex flex-col justify-evenly items-center pt-5">
         <div className="font-poppins font-bold text-4xl">
           <h1>
@@ -179,8 +203,10 @@ const Signup = () => {
                 id="Signup"
                 name="Signup"
                 className="w-full py-3 bg-purple-500 text-white font-bold rounded-md hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                disabled={loading} // Disable button when loading
               >
-                Signup
+                {loading ? "Signing up..." : "Signup"}{" "}
+                {/* Display loading text */}
               </button>
             </div>
           </form>

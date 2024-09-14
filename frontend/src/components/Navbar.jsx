@@ -59,7 +59,7 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className={`w-full flex md:px-10 justify-between items-center text-white bg-black py-[15px] px-4 border-y border-gray-700 transition-transform duration-500 ${showNavbar ? 'translate-y-0' : '-translate-y-full'}`}>
+            <nav className={`w-full flex md:px-10 justify-between items-center text-white bg-black py-[15px] px-4 border-y border-gray-700 transition-transform duration-450 ${showNavbar ? 'translate-y-0' : '-translate-y-full'}`}>
                 <div className='flex items-center'>
                     <NavLink to='/'>
                     <img className='w-[60px] h-[60px] cursor-pointer' src={logo} alt="Logo" />
