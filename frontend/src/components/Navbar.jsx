@@ -61,7 +61,9 @@ const Navbar = () => {
         <>
             <nav className={`w-full flex md:px-10 justify-between items-center text-white bg-black py-[15px] px-4 border-y border-gray-700 transition-transform duration-500 ${showNavbar ? 'translate-y-0' : '-translate-y-full'}`}>
                 <div className='flex items-center'>
+                    <NavLink to='/'>
                     <img className='w-[60px] h-[60px] cursor-pointer' src={logo} alt="Logo" />
+                    </NavLink>
                     <div className='flex p-3 pt-5'>
                         <p className='font-semibold text-lg'><span className='text-purple-500'>Cinema</span></p>
                         <p className='pt-0.5 pl-1'>Ghar</p>
@@ -158,12 +160,12 @@ const Navbar = () => {
                         </>
                     ) : (
                         <>
-                            <li className='my-[10px] mx-[20px] text-lg cursor-pointer'>
+                            <li className='my-[10px] mx-[30px] text-lg cursor-pointer'>
                                 <NavLink to="/profile" className={({ isActive }) => isActive ? "text-purple-500 sm:bg-transparent" : "text-white"}>
                                     <FontAwesomeIcon icon={faUser} />
                                 </NavLink>
                             </li>
-                            <li className='my-[10px] mx-[20px] text-lg cursor-pointer'>
+                            <li className='my-[20px] mx-[30px] text-lg cursor-pointer'>
                                 <FontAwesomeIcon icon={faSignOut} onClick={handleLogout} className="cursor-pointer" />
                             </li>
                         </>

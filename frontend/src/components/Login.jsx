@@ -122,84 +122,101 @@ const Login = () => {
     }
 
     return (
-        <div className="flex flex-col md:flex-row flex-wrap">
-            <div className='w-full md:w-1/2'>
+      <div className="flex flex-row flex-wrap min-h-[100vh] justify-center items-center my-auto bg-gradient-to-r from-purple-100 to-slate-100 ">
+        {/* <div className='w-full md:w-1/2'>
                 <img className="w-full min-h-screen" src={login} alt="Book Tickets" />
-            </div>
-            <div className='w-full md:w-1/2 flex flex-col justify-evenly items-center pt-5'>
-                <div className="font-poppins font-bold text-4xl">
-                    <h1><span className='text-purple-500'>Lo</span>gin</h1>
-                </div>
-                <div className="w-full max-w-md p-3">
-                    <form onSubmit={handleSubmit}>
-                        <div className="mb-4">
-                            <label htmlFor="email" className="text-gray-700 font-medium pl-1">Email</label>
-                            <input
-                                value={formInput.email}
-                                onChange={handleUserInput}
-                                name="email"
-                                id="email"
-                                type="email"
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-                                placeholder="Enter your email"
-                                required
-                            />
-                            <p className='text-red-700'>{formError.email}</p>
-                        </div>
-                        <div className="relative mb-4">
-                            <label htmlFor="password" className="block text-sm font-medium text-gray-700 pb-1 pl-1">Password:</label>
-                            <input
-                                value={formInput.password}
-                                onChange={handleUserInput}
-                                type={showPassword ? "text" : "password"}
-                                id="password"
-                                name="password"
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-                                placeholder="Enter your password"
-                            />
-                            <p className='text-red-700'>{formError.password}</p>
-                            <p className='text-red-700'>{formError.successMsg}</p>
+            </div> */}
+        <div className="w-full  flex flex-col justify-evenly items-center pt-5">
+          <div className="font-poppins font-bold text-4xl">
+            <h1>
+              <span className="text-purple-500">Lo</span>gin
+            </h1>
+          </div>
+          <div className="w-full max-w-md p-3">
+            <form onSubmit={handleSubmit}>
+              <div className="mb-4">
+                <label
+                  htmlFor="email"
+                  className="text-gray-700 font-medium pl-1"
+                >
+                  Email
+                </label>
+                <input
+                  value={formInput.email}
+                  onChange={handleUserInput}
+                  name="email"
+                  id="email"
+                  type="email"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 "
+                  placeholder="Enter your email"
+                  required
+                />
+                <p className="text-red-700">{formError.email}</p>
+              </div>
+              <div className="relative mb-4">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-gray-700 pb-1 pl-1"
+                >
+                  Password:
+                </label>
+                <input
+                  value={formInput.password}
+                  onChange={handleUserInput}
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  name="password"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  placeholder="Enter your password"
+                />
+                <p className="text-red-700">{formError.password}</p>
+                <p className="text-red-700">{formError.successMsg}</p>
 
-
-                            <button
-                                type="button"
-                                className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500"
-                                onClick={handleTogglePassword}
-                            >
-                                <FontAwesomeIcon
-                                    icon={showPassword ? faEyeSlash : faEye}
-                                    className="text-gray-500 h-[15px] w-[15px] pt-6"
-                                />
-                            </button>
-                        </div>
-                        <div>
-                            <p className="text-black text-center">
-                                Don't have an account?{" "}
-                                <NavLink to="/signup" className="font-medium text-purple-500">
-                                    Sign Up
-                                </NavLink>
-                            </p>
-                        </div>
-                        <div className='py-2'>
-                            <button
-                                id="Login"
-                                name="Login"
-                                className="w-full py-3 bg-purple-500 text-white font-bold rounded-md hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                            >
-                                Login
-                            </button>
-                        </div>
-                    </form>
-                    <div className="flex justify-center">
-                        <ul>
-                            <li className='my-[5px] pt-3 mx-[10px] text-5xl cursor-pointer transform transition-transform duration-300 hover:scale-125 hover:text-blue-500 inline-block px-2'><FontAwesomeIcon icon={faFacebook} /> </li>
-                            <li className='my-[5px] pt-3 mx-[10px] text-5xl cursor-pointer transform transition-transform duration-300 hover:scale-125 hover:text-black inline-block px-2'><FontAwesomeIcon icon={faGithub} /></li>
-                            <li className='my-[5px] pt-3 mx-[10px] text-5xl cursor-pointer transform transition-transform duration-300 hover:scale-125 hover:text-[#34A853] inline-block px-2'><FontAwesomeIcon icon={faGoogle} /></li>
-                        </ul>
-                    </div>
-                </div>
+                <button
+                  type="button"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500"
+                  onClick={handleTogglePassword}
+                >
+                  <FontAwesomeIcon
+                    icon={showPassword ? faEyeSlash : faEye}
+                    className="text-gray-500 h-[15px] w-[15px] pt-6"
+                  />
+                </button>
+              </div>
+              <div>
+                <p className="text-black text-center">
+                  Don't have an account?{" "}
+                  <NavLink to="/signup" className="font-medium text-purple-500">
+                    Sign Up
+                  </NavLink>
+                </p>
+              </div>
+              <div className="py-2">
+                <button
+                  id="Login"
+                  name="Login"
+                  className="w-full py-3 bg-purple-500 text-white font-bold rounded-md hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                >
+                  Login
+                </button>
+              </div>
+            </form>
+            <div className="flex justify-center">
+              <ul>
+                <li className="my-[5px] pt-3 mx-[10px] text-5xl cursor-pointer transform transition-transform duration-300 hover:scale-125 hover:text-blue-500 inline-block px-2">
+                  <FontAwesomeIcon icon={faFacebook} />{" "}
+                </li>
+                <li className="my-[5px] pt-3 mx-[10px] text-5xl cursor-pointer transform transition-transform duration-300 hover:scale-125 hover:text-black inline-block px-2">
+                  <FontAwesomeIcon icon={faGithub} />
+                </li>
+                <li className="my-[5px] pt-3 mx-[10px] text-5xl cursor-pointer transform transition-transform duration-300 hover:scale-125 hover:text-[#34A853] inline-block px-2">
+                  <FontAwesomeIcon icon={faGoogle} />
+                </li>
+              </ul>
             </div>
+          </div>
         </div>
+      </div>
     );
 };
 

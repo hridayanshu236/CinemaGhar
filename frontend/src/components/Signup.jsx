@@ -88,18 +88,22 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row flex-wrap">
-      <div className='w-full md:w-1/2'>
+    <div className="flex flex-row flex-wrap justify-center min-h-[100vh] my-auto bg-gradient-to-r from-purple-100 to-slate-100 ">
+      {/* <div className='w-full '>
         <img className="w-full min-h-screen" src={Loginsnap} alt="Book Tickets" />
-      </div>
-      <div className='w-full md:w-1/2 flex flex-col justify-evenly items-center pt-5'>
+      </div> */}
+      <div className="w-full  flex flex-col justify-evenly items-center pt-5">
         <div className="font-poppins font-bold text-4xl">
-          <h1><span className='text-purple-500'>Re</span>gister</h1>
+          <h1>
+            <span className="text-purple-500">Re</span>gister
+          </h1>
         </div>
         <div className="w-full max-w-md p-3">
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label htmlFor="email" className="text-gray-700 font-medium pl-1">Email</label>
+              <label htmlFor="email" className="text-gray-700 font-medium pl-1">
+                Email
+              </label>
               <input
                 value={formInput.email}
                 onChange={handleUserInput}
@@ -110,10 +114,15 @@ const Signup = () => {
                 placeholder="Enter your email"
                 required
               />
-              <p className='text-red-700'>{formError.email}</p>
+              <p className="text-red-700">{formError.email}</p>
             </div>
             <div className="relative mb-4">
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 pb-1 pl-1">Password:</label>
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700 pb-1 pl-1"
+              >
+                Password:
+              </label>
               <input
                 value={formInput.password}
                 onChange={handleUserInput}
@@ -123,10 +132,15 @@ const Signup = () => {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
                 placeholder="Enter your password"
               />
-              <p className='text-red-700'>{formError.password}</p>
+              <p className="text-red-700">{formError.password}</p>
             </div>
             <div className="relative mb-4">
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 pb-1 pl-1">Confirm Password:</label>
+              <label
+                htmlFor="confirmPassword"
+                className="block text-sm font-medium text-gray-700 pb-1 pl-1"
+              >
+                Confirm Password:
+              </label>
               <input
                 value={formInput.confirmPassword}
                 onChange={handleUserInput}
@@ -146,10 +160,12 @@ const Signup = () => {
                   className="text-gray-500 h-[15px] w-[15px] pt-6"
                 />
               </button>
-              <p className='text-red-700'>{formError.confirmPassword}</p>
+              <p className="text-red-700">{formError.confirmPassword}</p>
             </div>
             {successMsg && <p className="text-green-600 mb-4">{successMsg}</p>}
-            {verificationMsg && <p className="text-blue-600 mb-4">{verificationMsg}</p>}
+            {verificationMsg && (
+              <p className="text-blue-600 mb-4">{verificationMsg}</p>
+            )}
             <div>
               <p className="text-black text-center">
                 Already have an account?{" "}
@@ -158,7 +174,7 @@ const Signup = () => {
                 </NavLink>
               </p>
             </div>
-            <div className='py-2'>
+            <div className="py-2">
               <button
                 id="Signup"
                 name="Signup"
@@ -170,9 +186,15 @@ const Signup = () => {
           </form>
           <div className="flex justify-center">
             <ul>
-              <li className='my-[5px] pt-3 mx-[10px] text-5xl cursor-pointer transform transition-transform duration-300 hover:scale-125 hover:text-blue-500 inline-block px-2'><FontAwesomeIcon icon={faFacebook} /> </li>
-              <li className='my-[5px] pt-3 mx-[10px] text-5xl cursor-pointer transform transition-transform duration-300 hover:scale-125 hover:text-black inline-block px-2'><FontAwesomeIcon icon={faGithub} /></li>
-              <li className='my-[5px] pt-3 mx-[10px] text-5xl cursor-pointer transform transition-transform duration-300 hover:scale-125 hover:text-[#34A853] inline-block px-2'><FontAwesomeIcon icon={faGoogle} /></li>
+              <li className="my-[5px] pt-3 mx-[10px] text-5xl cursor-pointer transform transition-transform duration-300 hover:scale-125 hover:text-blue-500 inline-block px-2">
+                <FontAwesomeIcon icon={faFacebook} />{" "}
+              </li>
+              <li className="my-[5px] pt-3 mx-[10px] text-5xl cursor-pointer transform transition-transform duration-300 hover:scale-125 hover:text-black inline-block px-2">
+                <FontAwesomeIcon icon={faGithub} />
+              </li>
+              <li className="my-[5px] pt-3 mx-[10px] text-5xl cursor-pointer transform transition-transform duration-300 hover:scale-125 hover:text-[#34A853] inline-block px-2">
+                <FontAwesomeIcon icon={faGoogle} />
+              </li>
             </ul>
           </div>
         </div>

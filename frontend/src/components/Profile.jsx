@@ -57,57 +57,89 @@ const Profile = () => {
     if (error) return <p>{error}</p>;
 
     return (
-        <div className="flex flex-col  items-center w-full h-full min-h-[100vh]  text-white bg-[rgb(27,26,26)]">
-            <div className="flex flex-row  mb-4 w-full justify-center border-b-2">
-                <div className="inline-block p-5 text-2xl">
-                    <FontAwesomeIcon icon={faUser} />
-                </div>
-                <div className="inline-block p-5 text-2xl">
-                    <h1>Welcome, {userData.email}</h1>
-                </div>
-            </div>
-            <div className="flex flex-col items-center  h-full w-full ">
-                <div className="flex flex-row w-full items-center text-center justify-center  mr-1 ml-1 rounded-md">
-                    <ul>
-                        <li className={`p-4 text-lg cursor-pointer inline-block   ${view === 'active' ? 'text-purple-500' : ''}`}
-                            onClick={() => setView('active')}
-                        >Active Tickets</li>
-                        <li className={`p-4 text-lg cursor-pointer  inline-block  ${view === 'history' ? 'text-purple-500' : ''}`}
-                            onClick={() => setView('history')}
-                        >
-                            History</li>
-                    </ul>
-                </div>
-                <div className="flex  w-full overflow-x-auto p-5">
-                    <table className="w-full min-w-[800px] ">
-                        <thead>
-                            <tr className="border-2 border-white">
-                                <th className="p-2 border-t-2 border-r-2 border-white">Show Details</th>
-                                <th className="p-2 border-t-2 border-r-2 border-white">Date</th>
-                                <th className="p-2 border-t-2 border-r-2 border-white">Time</th>
-                                <th className="p-2 border border-white">Seats</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {(view === 'active' ? activeTickets : pastTickets).length > 0 ? (
-                                (view === 'active' ? activeTickets : pastTickets).map((booking, index) => (
-                                    <tr key={index} className="border-purple-500">
-                                        <td className="p-2 border-2 border-white">{booking.title}</td>
-                                        <td className="p-2 border-2 border-white">{booking.screening?.date}</td>
-                                        <td className="p-2 border-2 border-white">{booking.screening?.times[0]}</td>
-                                        <td className="p-2 border-2 border-white">{booking.seats.join(', ')}</td>
-                                    </tr>
-                                ))
-                            ) : (
-                                <tr>
-                                    <td colSpan="4" className="p-2 border border-purple-500 text-center">No {view === 'active' ? 'active' : 'past'} tickets available</td>
-                                </tr>
-                            )}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+      <div className="flex flex-col  items-center w-full h-full min-h-[100vh]  text-black bg-gradient-to-r from-purple-100 to-slate-100">
+        <div className="flex flex-row  mb-4 w-full justify-center border-b-2 border-black">
+          <div className="inline-block p-5 text-2xl">
+            <FontAwesomeIcon icon={faUser} />
+          </div>
+          <div className="inline-block p-5 text-2xl">
+            <h1>Welcome, {userData.email}</h1>
+          </div>
         </div>
+        <div className="flex flex-col items-center  h-full w-full ">
+          <div className="flex flex-row w-full items-center text-center justify-center  mr-1 ml-1 rounded-md">
+            <ul>
+              <li
+                className={`p-4 text-lg cursor-pointer inline-block   ${
+                  view === "active" ? "text-purple-500" : ""
+                }`}
+                onClick={() => setView("active")}
+              >
+                Active Tickets
+              </li>
+              <li
+                className={`p-4 text-lg cursor-pointer  inline-block  ${
+                  view === "history" ? "text-purple-500" : ""
+                }`}
+                onClick={() => setView("history")}
+              >
+                History
+              </li>
+            </ul>
+          </div>
+          <div className="flex  w-full overflow-x-auto p-5">
+            <table className="w-full min-w-[800px] ">
+              <thead>
+                <tr className="border-2 border-black">
+                  <th className="p-2 border-t-2 border-r-2 border-black">
+                    Show Details
+                  </th>
+                  <th className="p-2 border-t-2 border-r-2 border-black">
+                    Date
+                  </th>
+                  <th className="p-2 border-t-2 border-r-2 border-black">
+                    Time
+                  </th>
+                  <th className="p-2 border border-black">Seats</th>
+                </tr>
+              </thead>
+              <tbody>
+                {(view === "active" ? activeTickets : pastTickets).length >
+                0 ? (
+                  (view === "active" ? activeTickets : pastTickets).map(
+                    (booking, index) => (
+                      <tr key={index} className="border-purple-500">
+                        <td className="p-2 border-2 border-black">
+                          {booking.title}
+                        </td>
+                        <td className="p-2 border-2 border-black">
+                          {booking.screening?.date}
+                        </td>
+                        <td className="p-2 border-2 border-black">
+                          {booking.screening?.times[0]}
+                        </td>
+                        <td className="p-2 border-2 border-black">
+                          {booking.seats.join(", ")}
+                        </td>
+                      </tr>
+                    )
+                  )
+                ) : (
+                  <tr>
+                    <td
+                      colSpan="4"
+                      className="p-2 border border-purple-500 text-center"
+                    >
+                      No {view === "active" ? "active" : "past"} tickets
+                      available
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     );
 }
 
